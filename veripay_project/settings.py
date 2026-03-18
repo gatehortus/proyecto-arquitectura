@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'proveedores',
     'facturas',
     'pagos',
+    'conciliacion',
+    'certificados',
 ]
 
 MIDDLEWARE = [
