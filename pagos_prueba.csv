@@ -1,0 +1,4 @@
+referencia,monto,fecha,concepto
+TEST001,100000,2026-03-22,Pago factura TEST001
+TEST002,50000,2026-03-22,Pago parcial factura TEST002
+TEST003,300000,2026-03-22,Pago factura TEST003
