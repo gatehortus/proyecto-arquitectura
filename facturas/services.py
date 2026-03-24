@@ -51,10 +51,10 @@ def process_invoice_image(image_file):
 def _extract_invoice_number(text):
     """Busca patrones de número de factura."""
     patterns = [
-        r'(?:factura|fact|fac|invoice|no\.?)\s*[:#]?\s*([A-Z0-9][\w-]{2,20})',
+        r'\b(FAC[-–]\d[\w-]*)\b',
+        r'\b(FV[-–]\d[\w-]*)\b',
+        r'(?:factura\s*(?:no|n[°ºo]|#|:)\.?\s*)([A-Z0-9][\w-]{2,20})',
         r'(?:N[°ºo]\.?\s*)([A-Z0-9][\w-]{2,20})',
-        r'\b(FAC-\d+)\b',
-        r'\b(FV-\d+)\b',
     ]
     for pattern in patterns:
         match = re.search(pattern, text, re.IGNORECASE)
