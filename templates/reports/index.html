@@ -1,0 +1,40 @@
+<!-- Autor: Equipo VeriPay -->
+{% extends "base.html" %}
+{% block title %}Reportes{% endblock %}
+{% block content %}
+<div class="mb-4">
+    <h4 class="fw-bold mb-1">Generación de Reportes</h4>
+    <p class="text-secondary mb-0">Genere reportes en PDF del estado de facturas y conciliaciones</p>
+</div>
+<div class="row justify-content-center">
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-header"><i class="bi bi-bar-chart-line me-2"></i>Configurar Reporte</div>
+            <div class="card-body">
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label class="form-label">Tipo de Reporte</label>
+                        <select name="tipo" class="form-select" required>
+                            <option value="facturas">Reporte de Facturas</option>
+                            <option value="conciliacion">Reporte de Conciliación</option>
+                            <option value="proveedores">Reporte de Proveedores</option>
+                        </select>
+                    </div>
+                    <div class="row g-3 mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Fecha Desde</label>
+                            <input type="date" name="fecha_desde" class="form-control">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Fecha Hasta</label>
+                            <input type="date" name="fecha_hasta" class="form-control">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100"><i class="bi bi-file-earmark-pdf me-1"></i>Generar PDF</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

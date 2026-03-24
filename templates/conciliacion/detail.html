@@ -1,0 +1,86 @@
+<!-- Autor: Equipo VeriPay -->
+{% extends "base.html" %}
+{% block title %}Conciliación - Detalle{% endblock %}
+{% block content %}
+<nav aria-label="breadcrumb" class="mb-3">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'conciliacion_list' %}">Conciliaciones</a></li>
+        <li class="breadcrumb-item active">Detalle</li>
+    </ol>
+</nav>
+
+<!-- Summary Cards -->
+<div class="row g-3 mb-4">
+    <div class="col-md-3">
+        <div class="card kpi-card">
+            <div class="card-body text-center">
+                <p class="kpi-label mb-1">Total Facturas</p>
+                <h3 class="kpi-value">{{ proceso.total_facturas }}</h3>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card kpi-card">
+            <div class="card-body text-center">
+                <p class="kpi-label mb-1">Conciliadas</p>
+                <h3 class="kpi-value text-success">{{ proceso.facturas_conciliadas }}</h3>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card kpi-card">
+            <div class="card-body text-center">
+                <p class="kpi-label mb-1">Pendientes</p>
+                <h3 class="kpi-value text-warning">{{ proceso.facturas_pendientes }}</h3>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card kpi-card">
+            <div class="card-body text-center">
+                <p class="kpi-label mb-1">Estado</p>
+                <span class="status-badge badge-{{ proceso.estado|lower }}" style="font-size:0.9rem;">{{ proceso.get_estado_display }}</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h5 class="fw-bold mb-0">Coincidencias</h5>
+    <a href="{% url 'conciliacion_pdf' proceso.id %}" class="btn btn-outline-danger btn-sm"><i class="bi bi-file-earmark-pdf me-1"></i>Exportar PDF</a>
+</div>
+
+<div class="card">
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-hover mb-0">
+                <thead>
+                    <tr><th>Factura</th><th>Proveedor</th><th>Monto</th><th>Tipo</th><th>Confianza</th><th>Pago Ref.</th><th>Observación</th></tr>
+                </thead>
+                <tbody>
+                    {% for c in coincidencias %}
+                    <tr>
+                        <td><a href="{% url 'factura_detail' c.factura.id %}">{{ c.factura.numero_factura }}</a></td>
+                        <td>{{ c.factura.proveedor.nombre }}</td>
+                        <td>${{ c.factura.monto_total|floatformat:0 }}</td>
+                        <td><span class="status-badge badge-{{ c.tipo|lower }}">{{ c.get_tipo_display }}</span></td>
+                        <td>
+                            <div class="d-flex align-items-center gap-2">
+                                <div class="confidence-bar flex-grow-1" style="min-width:80px;">
+                                    <div class="bar-fill bg-{% if c.porcentaje_confianza >= 80 %}success{% elif c.porcentaje_confianza >= 50 %}warning{% else %}danger{% endif %}" style="width:{{ c.porcentaje_confianza }}%"></div>
+                                </div>
+                                <small class="fw-semibold">{{ c.porcentaje_confianza }}%</small>
+                            </div>
+                        </td>
+                        <td>{{ c.registro_pago.referencia|default:"-" }}</td>
+                        <td class="small">{{ c.observacion|default:"-"|truncatechars:40 }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr><td colspan="7" class="text-center py-4 text-secondary">Sin coincidencias</td></tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

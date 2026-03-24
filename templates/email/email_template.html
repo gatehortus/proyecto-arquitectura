@@ -1,0 +1,42 @@
+<!-- Autor: Equipo VeriPay -->
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8"></head>
+<body style="font-family:Arial,sans-serif;background:#f1f5f9;padding:20px;">
+<div style="max-width:600px;margin:0 auto;background:#fff;border-radius:12px;overflow:hidden;">
+    <div style="background:#1e293b;color:#fff;padding:24px;text-align:center;">
+        <h1 style="margin:0;font-size:24px;">VeriPay</h1>
+        <p style="margin:8px 0 0;opacity:0.8;">Resumen de Estado de Pagos</p>
+    </div>
+    <div style="padding:24px;">
+        <p>Estimado proveedor,</p>
+        <p>A continuación encontrará el resumen del estado de sus pagos:</p>
+
+        {% if facturas_resumen %}
+        <h3 style="color:#1e293b;border-bottom:2px solid #e2e8f0;padding-bottom:8px;">Facturas</h3>
+        <table style="width:100%;border-collapse:collapse;">
+            <tr style="background:#f8fafc;">
+                <th style="padding:8px;text-align:left;font-size:12px;">Número</th>
+                <th style="padding:8px;text-align:left;font-size:12px;">Monto</th>
+                <th style="padding:8px;text-align:left;font-size:12px;">Estado</th>
+            </tr>
+            {% for f in facturas_resumen %}
+            <tr style="border-bottom:1px solid #e2e8f0;">
+                <td style="padding:8px;">{{ f.numero_factura }}</td>
+                <td style="padding:8px;">${{ f.monto_total }}</td>
+                <td style="padding:8px;">{{ f.get_estado_display }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% endif %}
+
+        {% if conciliacion_resumen %}
+        <h3 style="color:#1e293b;border-bottom:2px solid #e2e8f0;padding-bottom:8px;margin-top:20px;">Última Conciliación</h3>
+        <p>Facturas conciliadas: <strong>{{ conciliacion_resumen.facturas_conciliadas }}</strong> de <strong>{{ conciliacion_resumen.total_facturas }}</strong></p>
+        {% endif %}
+
+        <p style="margin-top:24px;color:#64748b;font-size:12px;">Este es un correo generado automáticamente por VeriPay.</p>
+    </div>
+</div>
+</body>
+</html>

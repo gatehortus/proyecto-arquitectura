@@ -1,0 +1,49 @@
+<!-- Autor: Equipo VeriPay -->
+{% load veripay_tags %}
+<aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+        <div class="brand-icon"><i class="bi bi-shield-check"></i></div>
+        <h4>VeriPay</h4>
+    </div>
+    <nav class="sidebar-nav">
+        <div class="nav-section">Principal</div>
+        <a href="{% url 'dashboard' %}" class="nav-link {% if request.resolver_match.url_name == 'dashboard' %}active{% endif %}">
+            <i class="bi bi-grid-1x2-fill"></i> Dashboard
+        </a>
+
+        <div class="nav-section">Gestión</div>
+        <a href="{% url 'proveedor_list' %}" class="nav-link {% if 'proveedor' in request.resolver_match.url_name %}active{% endif %}">
+            <i class="bi bi-building"></i> Proveedores
+        </a>
+        <a href="{% url 'factura_list' %}" class="nav-link {% if 'factura' in request.resolver_match.url_name and 'ocr' not in request.resolver_match.url_name %}active{% endif %}">
+            <i class="bi bi-file-earmark-text"></i> Facturas
+        </a>
+        <a href="{% url 'factura_ocr_upload' %}" class="nav-link {% if 'ocr' in request.resolver_match.url_name %}active{% endif %}">
+            <i class="bi bi-upc-scan"></i> OCR Facturas
+        </a>
+        <a href="{% url 'pagos_list' %}" class="nav-link {% if 'pagos' in request.resolver_match.url_name %}active{% endif %}">
+            <i class="bi bi-credit-card"></i> Pagos
+        </a>
+        <a href="{% url 'certificado_list' %}" class="nav-link {% if 'certificado' in request.resolver_match.url_name %}active{% endif %}">
+            <i class="bi bi-patch-check"></i> Certificados
+        </a>
+
+        <div class="nav-section">Procesos</div>
+        <a href="{% url 'conciliacion_list' %}" class="nav-link {% if 'conciliacion' in request.resolver_match.url_name %}active{% endif %}">
+            <i class="bi bi-arrow-left-right"></i> Conciliación
+        </a>
+        <a href="{% url 'reports' %}" class="nav-link {% if 'report' in request.resolver_match.url_name %}active{% endif %}">
+            <i class="bi bi-bar-chart-line"></i> Reportes
+        </a>
+        <a href="{% url 'email_summary' %}" class="nav-link {% if 'email' in request.resolver_match.url_name %}active{% endif %}">
+            <i class="bi bi-envelope"></i> Enviar Resumen
+        </a>
+
+        {% if user.is_staff %}
+        <div class="nav-section">Administración</div>
+        <a href="{% url 'admin_dashboard' %}" class="nav-link {% if 'admin' in request.resolver_match.url_name %}active{% endif %}">
+            <i class="bi bi-gear"></i> Panel Admin
+        </a>
+        {% endif %}
+    </nav>
+</aside>

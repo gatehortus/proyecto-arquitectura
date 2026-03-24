@@ -1,0 +1,47 @@
+<!-- Autor: Equipo VeriPay -->
+{% extends "base.html" %}
+{% block title %}OCR - Cargar Factura{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h4 class="fw-bold mb-1"><i class="bi bi-upc-scan me-2"></i>OCR - Lectura de Facturas</h4>
+        <p class="text-secondary mb-0">Cargue una imagen o PDF de factura para extraer datos automáticamente</p>
+    </div>
+</div>
+<div class="row justify-content-center">
+    <div class="col-lg-7">
+        <div class="card">
+            <div class="card-body">
+                <form method="post" enctype="multipart/form-data" id="ocrForm">
+                    {% csrf_token %}
+                    <div class="ocr-dropzone mb-4" id="dropzone" onclick="document.getElementById('id_imagen').click()">
+                        <i class="bi bi-cloud-arrow-up d-block mb-3"></i>
+                        <h5>Arrastre una imagen aquí o haga clic para seleccionar</h5>
+                        <p class="text-secondary mb-0">Formatos: JPG, PNG, PDF — Máximo 10MB</p>
+                        <p class="text-primary fw-semibold mt-2" id="fileName" style="display:none;"></p>
+                    </div>
+                    <input type="file" name="imagen" id="id_imagen" accept="image/*,.pdf" class="d-none" required>
+                    {% if form.errors %}
+                    <div class="alert alert-danger">{{ form.imagen.errors.0 }}</div>
+                    {% endif %}
+                    <button type="submit" class="btn btn-primary w-100 py-2" id="submitBtn" disabled>
+                        <i class="bi bi-cpu me-2"></i>Procesar con OCR
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block extra_js %}
+<script>
+document.getElementById('id_imagen').addEventListener('change', function() {
+    const name = this.files[0]?.name;
+    if (name) {
+        document.getElementById('fileName').textContent = name;
+        document.getElementById('fileName').style.display = 'block';
+        document.getElementById('submitBtn').disabled = false;
+    }
+});
+</script>
+{% endblock %}

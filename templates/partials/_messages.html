@@ -1,0 +1,19 @@
+<!-- Autor: Equipo VeriPay -->
+{% if messages %}
+<div class="toast-container">
+    {% for message in messages %}
+    <div class="toast align-items-center text-bg-{{ message.tags|default:'info' }} border-0" role="alert">
+        <div class="d-flex">
+            <div class="toast-body">
+                {% if message.tags == 'success' %}<i class="bi bi-check-circle me-2"></i>
+                {% elif message.tags == 'error' %}<i class="bi bi-exclamation-circle me-2"></i>
+                {% elif message.tags == 'warning' %}<i class="bi bi-exclamation-triangle me-2"></i>
+                {% else %}<i class="bi bi-info-circle me-2"></i>{% endif %}
+                {{ message }}
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}

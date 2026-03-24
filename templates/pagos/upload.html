@@ -1,0 +1,32 @@
+<!-- Autor: Equipo VeriPay -->
+{% extends "base.html" %}
+{% block title %}Cargar Archivo de Pagos{% endblock %}
+{% block content %}
+<nav aria-label="breadcrumb" class="mb-3">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'pagos_list' %}">Pagos</a></li>
+        <li class="breadcrumb-item active">Cargar Archivo</li>
+    </ol>
+</nav>
+<div class="row justify-content-center">
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-header"><i class="bi bi-cloud-arrow-up me-2"></i>Cargar Archivo de Pagos</div>
+            <div class="card-body">
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {% for field in form %}
+                    <div class="mb-3">
+                        <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+                        {{ field }}
+                        {% if field.help_text %}<div class="form-text">{{ field.help_text }}</div>{% endif %}
+                        {% if field.errors %}<div class="text-danger small mt-1">{{ field.errors.0 }}</div>{% endif %}
+                    </div>
+                    {% endfor %}
+                    <button type="submit" class="btn btn-primary w-100"><i class="bi bi-cloud-arrow-up me-1"></i>Cargar y Procesar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

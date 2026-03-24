@@ -1,0 +1,39 @@
+<!-- Autor: Equipo VeriPay -->
+{% extends "base.html" %}
+{% block title %}Registros de Pago{% endblock %}
+{% block content %}
+<nav aria-label="breadcrumb" class="mb-3">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'pagos_list' %}">Pagos</a></li>
+        <li class="breadcrumb-item active">Registros del archivo</li>
+    </ol>
+</nav>
+<div class="card">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <span><i class="bi bi-list-ul me-2"></i>Registros de Pago</span>
+        <span class="badge bg-primary">{{ registros.count }} registros</span>
+    </div>
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-hover mb-0">
+                <thead>
+                    <tr><th>#</th><th>Referencia</th><th>Monto</th><th>Fecha</th><th>Concepto</th></tr>
+                </thead>
+                <tbody>
+                    {% for r in registros %}
+                    <tr>
+                        <td>{{ r.numero_linea }}</td>
+                        <td class="fw-semibold">{{ r.referencia }}</td>
+                        <td>${{ r.monto|floatformat:0 }}</td>
+                        <td>{{ r.fecha|date:"d/m/Y" }}</td>
+                        <td>{{ r.concepto|default:"-" }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr><td colspan="5" class="text-center py-4 text-secondary">Sin registros</td></tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

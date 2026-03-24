@@ -1,0 +1,27 @@
+<!-- Autor: Equipo VeriPay -->
+<header class="top-navbar">
+    <div class="d-flex align-items-center gap-3">
+        <button class="btn btn-icon d-lg-none" id="sidebarToggle">
+            <i class="bi bi-list fs-4"></i>
+        </button>
+        <h6 class="page-title">{% block page_title %}{% endblock %}</h6>
+    </div>
+    <div class="navbar-actions">
+        <button class="btn btn-icon" onclick="toggleTheme()" title="Cambiar tema">
+            <i class="bi bi-moon-fill" id="themeIcon"></i>
+        </button>
+        <div class="dropdown">
+            <button class="btn btn-icon dropdown-toggle" data-bs-toggle="dropdown">
+                <i class="bi bi-person-circle fs-5"></i>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
+                <li><span class="dropdown-item-text fw-semibold">{{ user.username }}</span></li>
+                <li><hr class="dropdown-divider"></li>
+                {% if user.is_staff %}
+                <li><a class="dropdown-item" href="{% url 'admin_dashboard' %}"><i class="bi bi-gear me-2"></i>Panel Admin</a></li>
+                {% endif %}
+                <li><a class="dropdown-item text-danger" href="{% url 'logout' %}"><i class="bi bi-box-arrow-right me-2"></i>Cerrar sesión</a></li>
+            </ul>
+        </div>
+    </div>
+</header>

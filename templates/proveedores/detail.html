@@ -1,0 +1,64 @@
+<!-- Autor: Equipo VeriPay -->
+{% extends "base.html" %}
+{% block title %}{{ proveedor.nombre }}{% endblock %}
+{% block content %}
+<nav aria-label="breadcrumb" class="mb-3">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'proveedor_list' %}">Proveedores</a></li>
+        <li class="breadcrumb-item active">{{ proveedor.nombre }}</li>
+    </ol>
+</nav>
+<div class="row g-4">
+    <div class="col-lg-4">
+        <div class="card">
+            <div class="card-body text-center">
+                <div class="kpi-icon mx-auto mb-3 bg-primary bg-opacity-10 text-primary" style="width:64px;height:64px;font-size:1.5rem;border-radius:16px;display:flex;align-items:center;justify-content:center;">
+                    <i class="bi bi-building"></i>
+                </div>
+                <h5 class="fw-bold">{{ proveedor.nombre }}</h5>
+                <p class="text-secondary mb-3">NIT: {{ proveedor.nit }}</p>
+                <ul class="list-unstyled text-start">
+                    <li class="py-2 border-bottom"><i class="bi bi-envelope me-2 text-primary"></i>{{ proveedor.email|default:"No registrado" }}</li>
+                    <li class="py-2 border-bottom"><i class="bi bi-telephone me-2 text-primary"></i>{{ proveedor.telefono|default:"No registrado" }}</li>
+                    <li class="py-2"><i class="bi bi-calendar me-2 text-primary"></i>Registrado: {{ proveedor.created_at|date:"d/m/Y" }}</li>
+                </ul>
+                {% if user.is_staff %}
+                <div class="d-flex gap-2 mt-3">
+                    <a href="{% url 'proveedor_edit' proveedor.id %}" class="btn btn-outline-warning flex-fill"><i class="bi bi-pencil me-1"></i>Editar</a>
+                    <a href="{% url 'proveedor_delete' proveedor.id %}" class="btn btn-outline-danger flex-fill" data-confirm-delete><i class="bi bi-trash me-1"></i>Eliminar</a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-8">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <span><i class="bi bi-file-earmark-text me-2"></i>Facturas del proveedor</span>
+                <span class="badge bg-primary">{{ facturas.count }}</span>
+            </div>
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-hover mb-0">
+                        <thead>
+                            <tr><th>Número</th><th>Monto</th><th>Fecha</th><th>Estado</th></tr>
+                        </thead>
+                        <tbody>
+                            {% for f in facturas %}
+                            <tr>
+                                <td><a href="{% url 'factura_detail' f.id %}">{{ f.numero_factura }}</a></td>
+                                <td>${{ f.monto_total|floatformat:0 }}</td>
+                                <td>{{ f.fecha_emision|date:"d/m/Y" }}</td>
+                                <td><span class="status-badge badge-{{ f.estado|lower }}">{{ f.get_estado_display }}</span></td>
+                            </tr>
+                            {% empty %}
+                            <tr><td colspan="4" class="text-center py-4 text-secondary">Sin facturas</td></tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
