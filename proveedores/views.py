@@ -1,12 +1,27 @@
 # Autor: Equipo VeriPay
 # Vistas CRUD de proveedores
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib import messages
+from django.http import JsonResponse
 from django.urls import reverse_lazy
 from django.db.models import Q, Count
 from .models import Proveedor
 from .forms import ProveedorForm
+
+
+@login_required
+def proveedores_publicos(request):
+    proveedores = list(
+        Proveedor.objects.order_by('nombre').values(
+            'id',
+            'nombre',
+            'nit',
+            'email',
+        )
+    )
+    return JsonResponse(proveedores, safe=False)
 
 
 class ProveedorListView(LoginRequiredMixin, ListView):

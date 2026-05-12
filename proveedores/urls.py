@@ -9,3 +9,7 @@ urlpatterns = [
     path('<uuid:pk>/editar/', views.ProveedorUpdateView.as_view(), name='proveedor_edit'),
     path('<uuid:pk>/eliminar/', views.ProveedorDeleteView.as_view(), name='proveedor_delete'),
 ]
+
+api_urlpatterns = [
+    path('proveedores-publicos/', views.proveedores_publicos, name='proveedores_publicos_api'),
+]

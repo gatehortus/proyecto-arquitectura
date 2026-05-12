@@ -1,11 +1,55 @@
 # Autor: Equipo VeriPay
 # Motor de conciliación automática con porcentaje de confianza
 from decimal import Decimal
+from django.db import transaction
 from django.utils import timezone
 from facturas.models import Factura
 from pagos.models import RegistroPago
 from certificados.models import CertificadoBancario
 from .models import ProcesoReconciliacion, Coincidencia
+
+
+@transaction.atomic
+def ejecutar_conciliacion(proceso):
+    facturas = Factura.objects.all()
+
+    proceso.total_facturas = facturas.count()
+    proceso.facturas_conciliadas = 0
+    proceso.facturas_pendientes = 0
+
+    for factura in facturas:
+        pago = RegistroPago.objects.filter(
+            referencia__iexact=factura.numero_factura
+        ).first()
+
+        if pago and pago.monto >= factura.monto_total:
+            factura.estado = Factura.EstadoFactura.PAGADA
+            tipo = Coincidencia.TipoCoincidencia.EXACTA
+            proceso.facturas_conciliadas += 1
+        elif pago:
+            factura.estado = Factura.EstadoFactura.PARCIAL
+            tipo = Coincidencia.TipoCoincidencia.PARCIAL
+            proceso.facturas_pendientes += 1
+        else:
+            factura.estado = Factura.EstadoFactura.NO_ENCONTRADA
+            tipo = Coincidencia.TipoCoincidencia.NO_ENCONTRADA
+            proceso.facturas_pendientes += 1
+
+        factura.save()
+
+        Coincidencia.objects.create(
+            proceso=proceso,
+            factura=factura,
+            registro_pago=pago,
+            tipo=tipo,
+            porcentaje_confianza=100,
+            observacion="Conciliacion usando archivo de pagos",
+        )
+
+    proceso.estado = ProcesoReconciliacion.EstadoProceso.FINALIZADO
+    proceso.save()
+
+    return proceso
 
 
 def run_reconciliation(tolerancia=5):
