@@ -7,6 +7,7 @@ from django.contrib import messages
 from django.http import JsonResponse
 from django.urls import reverse_lazy
 from django.db.models import Q, Count
+from django.utils.translation import gettext as _
 from .models import Proveedor
 from .forms import ProveedorForm
 
@@ -59,11 +60,11 @@ class ProveedorCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
 
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)
-        ctx['form_title'] = 'Nuevo Proveedor'
+        ctx['form_title'] = _("Nuevo Proveedor")
         return ctx
 
     def form_valid(self, form):
-        messages.success(self.request, 'Proveedor creado exitosamente.')
+        messages.success(self.request, _("Proveedor creado exitosamente."))
         return super().form_valid(form)
 
 
@@ -78,11 +79,11 @@ class ProveedorUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)
-        ctx['form_title'] = f'Editar: {self.object.nombre}'
+        ctx['form_title'] = _("Editar: %(nombre)s") % {"nombre": self.object.nombre}
         return ctx
 
     def form_valid(self, form):
-        messages.success(self.request, 'Proveedor actualizado.')
+        messages.success(self.request, _("Proveedor actualizado."))
         return super().form_valid(form)
 
 
@@ -94,5 +95,5 @@ class ProveedorDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         return self.request.user.is_staff
 
     def get(self, request, *args, **kwargs):
-        messages.success(request, 'Proveedor eliminado.')
+        messages.success(request, _("Proveedor eliminado."))
         return self.delete(request, *args, **kwargs)

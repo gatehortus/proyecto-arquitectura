@@ -5,6 +5,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib import messages
 from django.urls import reverse_lazy
 from django.db.models import Q
+from django.utils.translation import gettext as _
 from .models import CertificadoBancario
 from .forms import CertificadoForm
 
@@ -39,11 +40,11 @@ class CertificadoCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView)
 
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)
-        ctx['form_title'] = 'Nuevo Certificado Bancario'
+        ctx['form_title'] = _("Nuevo Certificado Bancario")
         return ctx
 
     def form_valid(self, form):
-        messages.success(self.request, 'Certificado creado exitosamente.')
+        messages.success(self.request, _("Certificado creado exitosamente."))
         return super().form_valid(form)
 
 
@@ -58,9 +59,11 @@ class CertificadoUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView)
 
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)
-        ctx['form_title'] = f'Editar: {self.object.numero_certificado}'
+        ctx['form_title'] = _("Editar: %(numero)s") % {
+            "numero": self.object.numero_certificado
+        }
         return ctx
 
     def form_valid(self, form):
-        messages.success(self.request, 'Certificado actualizado.')
+        messages.success(self.request, _("Certificado actualizado."))
         return super().form_valid(form)

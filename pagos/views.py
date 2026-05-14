@@ -6,6 +6,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
+from django.utils.translation import gettext as _
 from .models import ArchivoPagos, RegistroPago
 from .forms import ArchivoPagosUploadForm
 
@@ -33,7 +34,12 @@ class PagosUploadView(LoginRequiredMixin, UserPassesTestMixin, View):
             archivo_pago.procesado = False
             archivo_pago.save()
             _process_file(archivo_pago)
-            messages.success(request, f'Archivo cargado y procesado: {archivo_pago.total_registros} registros.')
+            messages.success(
+                request,
+                _("Archivo cargado y procesado: %(total)s registros.") % {
+                    "total": archivo_pago.total_registros
+                }
+            )
             return redirect('pagos_list')
         return render(request, 'pagos/upload.html', {'form': form})
 
@@ -46,7 +52,12 @@ class PagosProcessView(LoginRequiredMixin, UserPassesTestMixin, View):
         archivo_pago = get_object_or_404(ArchivoPagos, pk=pk)
         if not archivo_pago.procesado:
             _process_file(archivo_pago)
-            messages.success(request, f'Archivo procesado: {archivo_pago.total_registros} registros.')
+            messages.success(
+                request,
+                _("Archivo procesado: %(total)s registros.") % {
+                    "total": archivo_pago.total_registros
+                }
+            )
         return redirect('pagos_list')
 
 

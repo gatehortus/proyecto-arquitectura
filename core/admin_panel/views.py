@@ -7,6 +7,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.views import View
 from django import forms
+from django.utils.translation import gettext as _
 
 
 class StaffRequiredMixin(LoginRequiredMixin, UserPassesTestMixin):
@@ -47,7 +48,7 @@ class AdminUserCreateView(StaffRequiredMixin, View):
         for field in form.fields.values():
             field.widget.attrs['class'] = 'form-control'
         return render(request, 'admin_panel/user_form.html', {
-            'form': form, 'form_title': 'Crear Usuario'
+            'form': form, 'form_title': _("Crear Usuario")
         })
 
     def post(self, request):
@@ -56,10 +57,10 @@ class AdminUserCreateView(StaffRequiredMixin, View):
             field.widget.attrs['class'] = 'form-control'
         if form.is_valid():
             form.save()
-            messages.success(request, 'Usuario creado exitosamente.')
+            messages.success(request, _("Usuario creado exitosamente."))
             return redirect('admin_dashboard')
         return render(request, 'admin_panel/user_form.html', {
-            'form': form, 'form_title': 'Crear Usuario'
+            'form': form, 'form_title': _("Crear Usuario")
         })
 
 
@@ -68,7 +69,10 @@ class AdminUserEditView(StaffRequiredMixin, View):
         user = get_object_or_404(User, pk=pk)
         form = UserEditForm(instance=user)
         return render(request, 'admin_panel/user_form.html', {
-            'form': form, 'form_title': f'Editar Usuario: {user.username}'
+            'form': form,
+            'form_title': _("Editar Usuario: %(username)s") % {
+                "username": user.username
+            }
         })
 
     def post(self, request, pk):
@@ -76,8 +80,11 @@ class AdminUserEditView(StaffRequiredMixin, View):
         form = UserEditForm(request.POST, instance=user)
         if form.is_valid():
             form.save()
-            messages.success(request, 'Usuario actualizado.')
+            messages.success(request, _("Usuario actualizado."))
             return redirect('admin_dashboard')
         return render(request, 'admin_panel/user_form.html', {
-            'form': form, 'form_title': f'Editar Usuario: {user.username}'
+            'form': form,
+            'form_title': _("Editar Usuario: %(username)s") % {
+                "username": user.username
+            }
         })

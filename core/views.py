@@ -8,6 +8,7 @@ from django.contrib import messages
 from django.views import View
 from django.http import HttpResponse
 from django.db.models import Sum, Count, Q
+from django.utils.translation import gettext as _
 
 from proveedores.models import Proveedor
 from facturas.models import Factura
@@ -99,7 +100,7 @@ class ReportsView(LoginRequiredMixin, View):
         elif tipo == 'conciliacion':
             proceso = ProcesoReconciliacion.objects.order_by('-created_at').first()
             if not proceso:
-                messages.warning(request, 'No hay conciliaciones para reportar.')
+                messages.warning(request, _("No hay conciliaciones para reportar."))
                 return redirect('reports')
             pdf_buffer = generate_conciliacion_report(proceso)
         else:
@@ -107,7 +108,8 @@ class ReportsView(LoginRequiredMixin, View):
             pdf_buffer = generate_proveedores_report(qs)
 
         response = HttpResponse(pdf_buffer, content_type='application/pdf')
-        response['Content-Disposition'] = f'attachment; filename="reporte_{tipo}.pdf"'
+        filename = _("reporte_%(tipo)s.pdf") % {"tipo": tipo}
+        response['Content-Disposition'] = f'attachment; filename="{filename}"'
         return response
 
 
@@ -121,7 +123,7 @@ class EmailSummaryView(LoginRequiredMixin, View):
         destinatarios = [e.strip() for e in destinatarios_raw.split(',') if e.strip()]
 
         if not destinatarios:
-            messages.error(request, 'Debe ingresar al menos un correo destinatario.')
+            messages.error(request, _("Debe ingresar al menos un correo destinatario."))
             return redirect('email_summary')
 
         proveedor_id = request.POST.get('proveedor')
@@ -139,7 +141,15 @@ class EmailSummaryView(LoginRequiredMixin, View):
         )
 
         if success:
-            messages.success(request, f'Resumen enviado a {", ".join(destinatarios)}')
+            messages.success(
+                request,
+                _("Resumen enviado a %(destinatarios)s") % {
+                    "destinatarios": ", ".join(destinatarios)
+                }
+            )
         else:
-            messages.warning(request, 'El correo se configuró pero no se pudo enviar (verifique configuración SMTP).')
+            messages.warning(
+                request,
+                _("El correo se configuró pero no se pudo enviar (verifique configuración SMTP).")
+            )
         return redirect('email_summary')

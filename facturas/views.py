@@ -7,6 +7,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import View
 from django.db.models import Q
+from django.utils.translation import gettext as _
 from .models import Factura
 from .forms import FacturaForm, OCRUploadForm
 from .services import process_invoice_image
@@ -59,11 +60,11 @@ class FacturaCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
 
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)
-        ctx['form_title'] = 'Nueva Factura'
+        ctx['form_title'] = _("Nueva Factura")
         return ctx
 
     def form_valid(self, form):
-        messages.success(self.request, 'Factura creada exitosamente.')
+        messages.success(self.request, _("Factura creada exitosamente."))
         return super().form_valid(form)
 
 
@@ -78,11 +79,11 @@ class FacturaUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)
-        ctx['form_title'] = f'Editar: {self.object.numero_factura}'
+        ctx['form_title'] = _("Editar: %(numero)s") % {"numero": self.object.numero_factura}
         return ctx
 
     def form_valid(self, form):
-        messages.success(self.request, 'Factura actualizada.')
+        messages.success(self.request, _("Factura actualizada."))
         return super().form_valid(form)
 
 
@@ -120,7 +121,7 @@ class OCRConfirmView(LoginRequiredMixin, UserPassesTestMixin, View):
         form = FacturaForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, 'Factura creada desde OCR exitosamente.')
+            messages.success(request, _("Factura creada desde OCR exitosamente."))
             return redirect('factura_list')
         return render(request, 'facturas/ocr_result.html', {
             'form': form, 'raw_text': '', 'confidence': 0

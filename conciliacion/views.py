@@ -6,6 +6,7 @@ from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from django.views import View
+from django.utils.translation import gettext as _
 
 from facturas.models import Factura
 from pagos.models import RegistroPago
@@ -54,7 +55,10 @@ class RunReconciliacionView(LoginRequiredMixin, UserPassesTestMixin, View):
         proceso = run_reconciliation(tolerancia=tolerancia)
         messages.success(
             request,
-            f'Conciliación finalizada: {proceso.facturas_conciliadas}/{proceso.total_facturas} facturas conciliadas.'
+            _("Conciliación finalizada: %(conciliadas)s/%(total)s facturas conciliadas.") % {
+                "conciliadas": proceso.facturas_conciliadas,
+                "total": proceso.total_facturas,
+            }
         )
         return redirect('conciliacion_detail', pk=proceso.id)
 
@@ -64,5 +68,6 @@ class ProcesoReportPDFView(LoginRequiredMixin, View):
         proceso = get_object_or_404(ProcesoReconciliacion, pk=pk)
         pdf_buffer = generate_conciliacion_report(proceso)
         response = HttpResponse(pdf_buffer, content_type='application/pdf')
-        response['Content-Disposition'] = f'attachment; filename="conciliacion_{proceso.id}.pdf"'
+        filename = _("conciliacion_%(id)s.pdf") % {"id": proceso.id}
+        response['Content-Disposition'] = f'attachment; filename="{filename}"'
         return response

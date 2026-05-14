@@ -3,6 +3,7 @@
 from decimal import Decimal
 from django.db import transaction
 from django.utils import timezone
+from django.utils.translation import gettext as _
 from facturas.models import Factura
 from pagos.models import RegistroPago
 from certificados.models import CertificadoBancario
@@ -43,7 +44,7 @@ def ejecutar_conciliacion(proceso):
             registro_pago=pago,
             tipo=tipo,
             porcentaje_confianza=100,
-            observacion="Conciliacion usando archivo de pagos",
+            observacion=_("Conciliación usando archivo de pagos"),
         )
 
     proceso.estado = ProcesoReconciliacion.EstadoProceso.FINALIZADO
@@ -87,17 +88,19 @@ def run_reconciliation(tolerancia=5):
         if pago_exacto:
             registro_match = pago_exacto
             confianza += Decimal('40')
-            observaciones.append('Referencia encontrada en pagos')
+            observaciones.append(_("Referencia encontrada en pagos"))
 
             # Verificar monto
             diff_pago = abs(factura.monto_total - pago_exacto.monto)
             tolerancia_monto = factura.monto_total * Decimal(str(tolerancia)) / Decimal('100')
             if diff_pago <= tolerancia_monto:
                 confianza += Decimal('30')
-                observaciones.append('Monto dentro de tolerancia')
+                observaciones.append(_("Monto dentro de tolerancia"))
             elif pago_exacto.monto < factura.monto_total:
                 confianza += Decimal('15')
-                observaciones.append(f'Pago parcial: ${pago_exacto.monto}')
+                observaciones.append(
+                    _("Pago parcial: $%(monto)s") % {"monto": pago_exacto.monto}
+                )
         else:
             # 2. Buscar por monto similar
             for registro in registros:
@@ -106,7 +109,9 @@ def run_reconciliation(tolerancia=5):
                 if diff <= tolerancia_monto:
                     registro_match = registro
                     confianza += Decimal('25')
-                    observaciones.append(f'Monto similar encontrado: ${registro.monto}')
+                    observaciones.append(
+                        _("Monto similar encontrado: $%(monto)s") % {"monto": registro.monto}
+                    )
                     break
 
         # 3. Buscar certificado bancario
@@ -117,10 +122,14 @@ def run_reconciliation(tolerancia=5):
         if cert_match:
             certificado_match = cert_match
             confianza += Decimal('20')
-            observaciones.append(f'Certificado: {cert_match.numero_certificado}')
+            observaciones.append(
+                _("Certificado: %(numero)s") % {
+                    "numero": cert_match.numero_certificado
+                }
+            )
             if cert_match.autenticidad_verificada:
                 confianza += Decimal('10')
-                observaciones.append('Certificado verificado')
+                observaciones.append(_("Certificado verificado"))
 
         # 4. Clasificar
         confianza = min(confianza, Decimal('100'))
@@ -140,7 +149,7 @@ def run_reconciliation(tolerancia=5):
             certificado_bancario=certificado_match,
             tipo=tipo,
             porcentaje_confianza=confianza,
-            observacion='; '.join(observaciones) if observaciones else 'Sin coincidencias encontradas',
+            observacion='; '.join(observaciones) if observaciones else _("Sin coincidencias encontradas"),
         )
 
         # Actualizar estado de factura

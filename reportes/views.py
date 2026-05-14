@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
+from django.utils.translation import gettext as _
 
 from .services.report_generators import ExcelReportGenerator, PDFReportGenerator
 
@@ -17,8 +18,8 @@ def get_report_generator(tipo):
 def generar_reporte(request):
     tipo = request.GET.get('tipo')
     data = [
-        {'id': 1, 'nombre': 'Proveedor Demo'},
-        {'id': 2, 'nombre': 'Factura Demo'},
+        {'id': 1, 'nombre': _("Proveedor Demo")},
+        {'id': 2, 'nombre': _("Factura Demo")},
     ]
     generator = get_report_generator(tipo)
     result = generator.generate(data)
