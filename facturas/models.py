@@ -1,6 +1,5 @@
 from django.db import models
 import uuid
-from proveedores.models import Proveedor
 
 
 class Factura(models.Model):
@@ -19,7 +18,7 @@ class Factura(models.Model):
     )
 
     proveedor = models.ForeignKey(
-        Proveedor,
+        "proveedores.Proveedor",
         on_delete=models.CASCADE,
         related_name='facturas'
     )

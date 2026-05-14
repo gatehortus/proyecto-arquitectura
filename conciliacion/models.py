@@ -1,8 +1,5 @@
 from django.db import models
 import uuid
-from facturas.models import Factura
-from pagos.models import RegistroPago
-from certificados.models import CertificadoBancario
 
 
 class ProcesoReconciliacion(models.Model):
@@ -82,13 +79,13 @@ class Coincidencia(models.Model):
     )
 
     factura = models.ForeignKey(
-        Factura,
+        "facturas.Factura",
         on_delete=models.CASCADE,
         related_name='coincidencias'
     )
 
     registro_pago = models.ForeignKey(
-        RegistroPago,
+        "pagos.RegistroPago",
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
@@ -96,7 +93,7 @@ class Coincidencia(models.Model):
     )
 
     certificado_bancario = models.ForeignKey(
-        CertificadoBancario,
+        "certificados.CertificadoBancario",
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
