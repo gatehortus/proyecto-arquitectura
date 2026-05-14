@@ -86,7 +86,10 @@ class FacturaUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         return super().form_valid(form)
 
 
-class OCRUploadView(LoginRequiredMixin, View):
+class OCRUploadView(LoginRequiredMixin, UserPassesTestMixin, View):
+    def test_func(self):
+        return self.request.user.is_staff
+
     def get(self, request):
         return render(request, 'facturas/ocr_upload.html', {'form': OCRUploadForm()})
 
@@ -109,7 +112,10 @@ class OCRUploadView(LoginRequiredMixin, View):
         return render(request, 'facturas/ocr_upload.html', {'form': form})
 
 
-class OCRConfirmView(LoginRequiredMixin, View):
+class OCRConfirmView(LoginRequiredMixin, UserPassesTestMixin, View):
+    def test_func(self):
+        return self.request.user.is_staff
+
     def post(self, request):
         form = FacturaForm(request.POST)
         if form.is_valid():

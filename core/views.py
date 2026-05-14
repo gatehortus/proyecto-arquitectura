@@ -74,7 +74,7 @@ class LoginView(View):
         return render(request, 'auth/login.html', {'form': {'errors': True}})
 
 
-class LogoutView(View):
+class LogoutView(LoginRequiredMixin, View):
     def get(self, request):
         logout(request)
         return redirect('login')
