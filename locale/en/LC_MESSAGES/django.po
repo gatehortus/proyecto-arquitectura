@@ -1,0 +1,196 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-05-19 07:15-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+#: .\certificados\views.py:43
+msgid "Nuevo Certificado Bancario"
+msgstr "New Bank Certificate"
+
+#: .\certificados\views.py:47
+msgid "Certificado creado exitosamente."
+msgstr "Certificate created successfully."
+
+#: .\certificados\views.py:62 .\facturas\views.py:82
+#, python-format
+msgid "Editar: %(numero)s"
+msgstr "Edit: %(numero)s"
+
+#: .\certificados\views.py:68
+msgid "Certificado actualizado."
+msgstr "Certificate updated."
+
+#: .\conciliacion\services.py:47
+msgid "Conciliación usando archivo de pagos"
+msgstr "Reconciliation using payments file"
+
+#: .\conciliacion\services.py:91
+msgid "Referencia encontrada en pagos"
+msgstr "Reference found in payments"
+
+#: .\conciliacion\services.py:98
+msgid "Monto dentro de tolerancia"
+msgstr "Amount within tolerance"
+
+#: .\conciliacion\services.py:102
+#, python-format
+msgid "Pago parcial: $%(monto)s"
+msgstr "Partial payment: $%(monto)s"
+
+#: .\conciliacion\services.py:113
+#, python-format
+msgid "Monto similar encontrado: $%(monto)s"
+msgstr "Similar amount found: $%(monto)s"
+
+#: .\conciliacion\services.py:126
+#, python-format
+msgid "Certificado: %(numero)s"
+msgstr "Certificate: %(numero)s"
+
+#: .\conciliacion\services.py:132
+msgid "Certificado verificado"
+msgstr "Certificate verified"
+
+#: .\conciliacion\services.py:152
+msgid "Sin coincidencias encontradas"
+msgstr "No matches found"
+
+#: .\conciliacion\views.py:58
+#, python-format
+msgid ""
+"Conciliación finalizada: %(conciliadas)s/%(total)s facturas conciliadas."
+msgstr ""
+"Reconciliation completed: %(conciliadas)s/%(total)s invoices reconciled."
+
+#: .\conciliacion\views.py:71
+#, python-format
+msgid "conciliacion_%(id)s.pdf"
+msgstr "reconciliation_%(id)s.pdf"
+
+#: .\core\admin_panel\views.py:51 .\core\admin_panel\views.py:63
+msgid "Crear Usuario"
+msgstr "Create User"
+
+#: .\core\admin_panel\views.py:60
+msgid "Usuario creado exitosamente."
+msgstr "User created successfully."
+
+#: .\core\admin_panel\views.py:73 .\core\admin_panel\views.py:87
+#, python-format
+msgid "Editar Usuario: %(username)s"
+msgstr "Edit User: %(username)s"
+
+#: .\core\admin_panel\views.py:83
+msgid "Usuario actualizado."
+msgstr "User updated."
+
+#: .\core\views.py:103
+msgid "No hay conciliaciones para reportar."
+msgstr "There are no reconciliations to report."
+
+#: .\core\views.py:111
+#, python-format
+msgid "reporte_%(tipo)s.pdf"
+msgstr "report_%(tipo)s.pdf"
+
+#: .\core\views.py:126
+msgid "Debe ingresar al menos un correo destinatario."
+msgstr "You must enter at least one recipient email address."
+
+#: .\core\views.py:146
+#, python-format
+msgid "Resumen enviado a %(destinatarios)s"
+msgstr "Summary sent to %(destinatarios)s"
+
+#: .\core\views.py:153
+msgid ""
+"El correo se configuró pero no se pudo enviar (verifique configuración SMTP)."
+msgstr ""
+"The email was configured but could not be sent (check SMTP configuration)."
+
+#: .\facturas\views.py:63
+msgid "Nueva Factura"
+msgstr "New Invoice"
+
+#: .\facturas\views.py:67
+msgid "Factura creada exitosamente."
+msgstr "Invoice created successfully."
+
+#: .\facturas\views.py:86
+msgid "Factura actualizada."
+msgstr "Invoice updated."
+
+#: .\facturas\views.py:124
+msgid "Factura creada desde OCR exitosamente."
+msgstr "Invoice created from OCR successfully."
+
+#: .\pagos\views.py:39
+#, python-format
+msgid "Archivo cargado y procesado: %(total)s registros."
+msgstr "File uploaded and processed: %(total)s records."
+
+#: .\pagos\views.py:57
+#, python-format
+msgid "Archivo procesado: %(total)s registros."
+msgstr "File processed: %(total)s records."
+
+#: .\proveedores\views.py:63
+msgid "Nuevo Proveedor"
+msgstr "New Supplier"
+
+#: .\proveedores\views.py:67
+msgid "Proveedor creado exitosamente."
+msgstr "Supplier created successfully."
+
+#: .\proveedores\views.py:82
+#, python-format
+msgid "Editar: %(nombre)s"
+msgstr "Edit: %(nombre)s"
+
+#: .\proveedores\views.py:86
+msgid "Proveedor actualizado."
+msgstr "Supplier updated."
+
+#: .\proveedores\views.py:98
+msgid "Proveedor eliminado."
+msgstr "Supplier deleted."
+
+#: .\reportes\services\report_generators.py:16
+msgid "report.pdf"
+msgstr "report.pdf"
+
+#: .\reportes\services\report_generators.py:17
+#, python-format
+msgid "Reporte PDF generado con %(total)s registros."
+msgstr "PDF report generated with %(total)s records."
+
+#: .\reportes\services\report_generators.py:28
+msgid "report.xlsx"
+msgstr "report.xlsx"
+
+#: .\reportes\services\report_generators.py:29
+#, python-format
+msgid "Reporte Excel generado con %(total)s registros."
+msgstr "Excel report generated with %(total)s records."
+
+#: .\reportes\views.py:21
+msgid "Proveedor Demo"
+msgstr "Demo Supplier"
+
+#: .\reportes\views.py:22
+msgid "Factura Demo"
+msgstr "Demo Invoice"

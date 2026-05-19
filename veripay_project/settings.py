@@ -133,6 +133,10 @@ TIME_ZONE = 'America/Bogota'
 
 USE_I18N = True
 
+LOCALE_PATHS = [
+    BASE_DIR / 'locale',
+]
+
 USE_TZ = True
 
 
