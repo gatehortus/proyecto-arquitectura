@@ -1,16 +1,25 @@
-<!-- Autor: Equipo VeriPay -->
 {% extends "base.html" %}
-{% block title %}Facturas{% endblock %}
+{% load i18n %}
+{% block title %}{% trans "Facturas" %}{% endblock %}
+{% block page_title %}{% trans "Facturas" %}{% endblock %}
+{% block breadcrumbs %}
+<nav aria-label="breadcrumb" class="mb-3">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">{% trans "Dashboard" %}</a></li>
+        <li class="breadcrumb-item active">{% trans "Facturas" %}</li>
+    </ol>
+</nav>
+{% endblock %}
 {% block content %}
 <div class="d-flex justify-content-between align-items-center mb-4">
     <div>
-        <h4 class="fw-bold mb-1">Facturas</h4>
-        <p class="text-secondary mb-0">Gestión de facturas de proveedores</p>
+        <h4 class="fw-bold mb-1">{% trans "Facturas" %}</h4>
+        <p class="text-secondary mb-0">{% trans "Gestión de facturas de proveedores" %}</p>
     </div>
     <div class="d-flex gap-2">
-        <a href="{% url 'factura_ocr_upload' %}" class="btn btn-outline-primary"><i class="bi bi-upc-scan me-1"></i>Cargar con OCR</a>
+        <a href="{% url 'factura_ocr_upload' %}" class="btn btn-outline-primary"><i class="bi bi-upc-scan me-1"></i>{% trans "Cargar con OCR" %}</a>
         {% if user.is_staff %}
-        <a href="{% url 'factura_create' %}" class="btn btn-primary"><i class="bi bi-plus-lg me-1"></i>Nueva Factura</a>
+        <a href="{% url 'factura_create' %}" class="btn btn-primary"><i class="bi bi-plus-lg me-1"></i>{% trans "Nueva Factura" %}</a>
         {% endif %}
     </div>
 </div>
@@ -19,30 +28,30 @@
     <div class="card-body py-3">
         <form method="get" class="row g-2 align-items-end">
             <div class="col-md-3">
-                <input type="text" name="q" class="form-control" placeholder="Buscar número factura..." value="{{ request.GET.q }}">
+                <input type="text" name="q" class="form-control" placeholder="{% trans 'Buscar número factura...' %}" value="{{ request.GET.q }}">
             </div>
             <div class="col-md-2">
                 <select name="estado" class="form-select">
-                    <option value="">Todos los estados</option>
-                    <option value="PENDIENTE" {% if request.GET.estado == 'PENDIENTE' %}selected{% endif %}>Pendiente</option>
-                    <option value="PAGADA" {% if request.GET.estado == 'PAGADA' %}selected{% endif %}>Pagada</option>
-                    <option value="PARCIAL" {% if request.GET.estado == 'PARCIAL' %}selected{% endif %}>Parcial</option>
-                    <option value="RECHAZADA" {% if request.GET.estado == 'RECHAZADA' %}selected{% endif %}>Rechazada</option>
-                    <option value="NO_ENCONTRADA" {% if request.GET.estado == 'NO_ENCONTRADA' %}selected{% endif %}>No Encontrada</option>
+                    <option value="">{% trans "Todos los estados" %}</option>
+                    <option value="PENDIENTE" {% if request.GET.estado == 'PENDIENTE' %}selected{% endif %}>{% trans "Pendiente" %}</option>
+                    <option value="PAGADA" {% if request.GET.estado == 'PAGADA' %}selected{% endif %}>{% trans "Pagada" %}</option>
+                    <option value="PARCIAL" {% if request.GET.estado == 'PARCIAL' %}selected{% endif %}>{% trans "Parcial" %}</option>
+                    <option value="RECHAZADA" {% if request.GET.estado == 'RECHAZADA' %}selected{% endif %}>{% trans "Rechazada" %}</option>
+                    <option value="NO_ENCONTRADA" {% if request.GET.estado == 'NO_ENCONTRADA' %}selected{% endif %}>{% trans "No Encontrada" %}</option>
                 </select>
             </div>
             <div class="col-md-2">
-                <input type="date" name="fecha_desde" class="form-control" value="{{ request.GET.fecha_desde }}" placeholder="Desde">
+                <input type="date" name="fecha_desde" class="form-control" value="{{ request.GET.fecha_desde }}">
             </div>
             <div class="col-md-2">
-                <input type="date" name="fecha_hasta" class="form-control" value="{{ request.GET.fecha_hasta }}" placeholder="Hasta">
+                <input type="date" name="fecha_hasta" class="form-control" value="{{ request.GET.fecha_hasta }}">
             </div>
             <div class="col-auto">
-                <button type="submit" class="btn btn-primary"><i class="bi bi-search me-1"></i>Filtrar</button>
+                <button type="submit" class="btn btn-primary"><i class="bi bi-search me-1"></i>{% trans "Filtrar" %}</button>
             </div>
             {% if request.GET.q or request.GET.estado or request.GET.fecha_desde %}
             <div class="col-auto">
-                <a href="{% url 'factura_list' %}" class="btn btn-outline-secondary">Limpiar</a>
+                <a href="{% url 'factura_list' %}" class="btn btn-outline-secondary">{% trans "Limpiar" %}</a>
             </div>
             {% endif %}
         </form>
@@ -55,13 +64,13 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th>Número</th>
-                        <th>Proveedor</th>
-                        <th>Monto Total</th>
-                        <th>Monto Pagado</th>
-                        <th>Fecha Emisión</th>
-                        <th>Estado</th>
-                        <th>Acciones</th>
+                        <th>{% trans "Número" %}</th>
+                        <th>{% trans "Proveedor" %}</th>
+                        <th>{% trans "Monto Total" %}</th>
+                        <th>{% trans "Monto Pagado" %}</th>
+                        <th>{% trans "Fecha Emisión" %}</th>
+                        <th>{% trans "Estado" %}</th>
+                        <th>{% trans "Acciones" %}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -81,7 +90,7 @@
                         </td>
                     </tr>
                     {% empty %}
-                    <tr><td colspan="7" class="text-center py-5 text-secondary"><i class="bi bi-file-earmark-text fs-1 d-block mb-2"></i>No hay facturas registradas</td></tr>
+                    <tr><td colspan="7" class="text-center py-5 text-secondary"><i class="bi bi-file-earmark-text fs-1 d-block mb-2"></i>{% trans "No hay facturas registradas" %}</td></tr>
                     {% endfor %}
                 </tbody>
             </table>

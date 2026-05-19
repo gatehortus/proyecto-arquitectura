@@ -1,14 +1,23 @@
-<!-- Autor: Equipo VeriPay -->
 {% extends "base.html" %}
-{% block title %}Archivos de Pagos{% endblock %}
+{% load i18n %}
+{% block title %}{% trans "Archivos de Pagos" %}{% endblock %}
+{% block page_title %}{% trans "Pagos" %}{% endblock %}
+{% block breadcrumbs %}
+<nav aria-label="breadcrumb" class="mb-3">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">{% trans "Dashboard" %}</a></li>
+        <li class="breadcrumb-item active">{% trans "Pagos" %}</li>
+    </ol>
+</nav>
+{% endblock %}
 {% block content %}
 <div class="d-flex justify-content-between align-items-center mb-4">
     <div>
-        <h4 class="fw-bold mb-1">Archivos de Pagos</h4>
-        <p class="text-secondary mb-0">Carga y procesamiento de archivos bancarios</p>
+        <h4 class="fw-bold mb-1">{% trans "Archivos de Pagos" %}</h4>
+        <p class="text-secondary mb-0">{% trans "Carga y procesamiento de archivos bancarios" %}</p>
     </div>
     {% if user.is_staff %}
-    <a href="{% url 'pagos_upload' %}" class="btn btn-primary"><i class="bi bi-cloud-arrow-up me-1"></i>Cargar Archivo</a>
+    <a href="{% url 'pagos_upload' %}" class="btn btn-primary"><i class="bi bi-cloud-arrow-up me-1"></i>{% trans "Cargar Archivo" %}</a>
     {% endif %}
 </div>
 <div class="card">
@@ -16,35 +25,35 @@
         <div class="table-responsive">
             <table class="table table-hover">
                 <thead>
-                    <tr><th>ID</th><th>Archivo</th><th>Formato</th><th>Registros</th><th>Procesado</th><th>Fecha</th><th>Acciones</th></tr>
+                    <tr><th>{% trans "ID" %}</th><th>{% trans "Archivo" %}</th><th>{% trans "Formato" %}</th><th>{% trans "Registros" %}</th><th>{% trans "Procesado" %}</th><th>{% trans "Fecha" %}</th><th>{% trans "Acciones" %}</th></tr>
                 </thead>
                 <tbody>
                     {% for a in object_list %}
                     <tr>
                         <td class="small">{{ a.id|truncatechars:8 }}</td>
-                        <td class="fw-semibold">{{ a.archivo.name|default:"Sin archivo" }}</td>
+                        <td class="fw-semibold">{{ a.archivo.name|default:_("Sin archivo") }}</td>
                         <td>{{ a.formato|upper }}</td>
                         <td>{{ a.total_registros }}</td>
                         <td>
                             {% if a.procesado %}
-                            <span class="status-badge badge-pagada">Procesado</span>
+                            <span class="status-badge badge-pagada">{% trans "Procesado" %}</span>
                             {% else %}
-                            <span class="status-badge badge-pendiente">Pendiente</span>
+                            <span class="status-badge badge-pendiente">{% trans "Pendiente" %}</span>
                             {% endif %}
                         </td>
                         <td>{{ a.created_at|date:"d/m/Y H:i" }}</td>
                         <td>
-                            <a href="{% url 'pagos_registros' a.id %}" class="btn btn-icon btn-outline-primary btn-sm" title="Ver registros"><i class="bi bi-list-ul"></i></a>
+                            <a href="{% url 'pagos_registros' a.id %}" class="btn btn-icon btn-outline-primary btn-sm" title="{% trans 'Ver registros' %}"><i class="bi bi-list-ul"></i></a>
                             {% if not a.procesado and user.is_staff %}
                             <form method="post" action="{% url 'pagos_process' a.id %}" class="d-inline">
                                 {% csrf_token %}
-                                <button type="submit" class="btn btn-icon btn-outline-success btn-sm" title="Procesar"><i class="bi bi-play-fill"></i></button>
+                                <button type="submit" class="btn btn-icon btn-outline-success btn-sm" title="{% trans 'Procesar' %}"><i class="bi bi-play-fill"></i></button>
                             </form>
                             {% endif %}
                         </td>
                     </tr>
                     {% empty %}
-                    <tr><td colspan="7" class="text-center py-5 text-secondary"><i class="bi bi-credit-card fs-1 d-block mb-2"></i>No hay archivos de pagos</td></tr>
+                    <tr><td colspan="7" class="text-center py-5 text-secondary"><i class="bi bi-credit-card fs-1 d-block mb-2"></i>{% trans "No hay archivos de pagos" %}</td></tr>
                     {% endfor %}
                 </tbody>
             </table>

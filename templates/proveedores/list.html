@@ -1,14 +1,23 @@
-<!-- Autor: Equipo VeriPay -->
 {% extends "base.html" %}
-{% block title %}Proveedores{% endblock %}
+{% load i18n %}
+{% block title %}{% trans "Proveedores" %}{% endblock %}
+{% block page_title %}{% trans "Proveedores" %}{% endblock %}
+{% block breadcrumbs %}
+<nav aria-label="breadcrumb" class="mb-3">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">{% trans "Dashboard" %}</a></li>
+        <li class="breadcrumb-item active">{% trans "Proveedores" %}</li>
+    </ol>
+</nav>
+{% endblock %}
 {% block content %}
 <div class="d-flex justify-content-between align-items-center mb-4">
     <div>
-        <h4 class="fw-bold mb-1">Proveedores</h4>
-        <p class="text-secondary mb-0">Gestión de proveedores del sistema</p>
+        <h4 class="fw-bold mb-1">{% trans "Proveedores" %}</h4>
+        <p class="text-secondary mb-0">{% trans "Gestión de proveedores del sistema" %}</p>
     </div>
     {% if user.is_staff %}
-    <a href="{% url 'proveedor_create' %}" class="btn btn-primary"><i class="bi bi-plus-lg me-1"></i>Nuevo Proveedor</a>
+    <a href="{% url 'proveedor_create' %}" class="btn btn-primary"><i class="bi bi-plus-lg me-1"></i>{% trans "Nuevo Proveedor" %}</a>
     {% endif %}
 </div>
 
@@ -16,14 +25,14 @@
     <div class="card-body py-3">
         <form method="get" class="row g-2 align-items-end">
             <div class="col-md-4">
-                <input type="text" name="q" class="form-control" placeholder="Buscar por nombre o NIT..." value="{{ request.GET.q }}">
+                <input type="text" name="q" class="form-control" placeholder="{% trans 'Buscar por nombre o NIT...' %}" value="{{ request.GET.q }}">
             </div>
             <div class="col-auto">
-                <button type="submit" class="btn btn-primary"><i class="bi bi-search me-1"></i>Buscar</button>
+                <button type="submit" class="btn btn-primary"><i class="bi bi-search me-1"></i>{% trans "Buscar" %}</button>
             </div>
             {% if request.GET.q %}
             <div class="col-auto">
-                <a href="{% url 'proveedor_list' %}" class="btn btn-outline-secondary">Limpiar</a>
+                <a href="{% url 'proveedor_list' %}" class="btn btn-outline-secondary">{% trans "Limpiar" %}</a>
             </div>
             {% endif %}
         </form>
@@ -36,12 +45,12 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th>Nombre</th>
-                        <th>NIT</th>
-                        <th>Email</th>
-                        <th>Teléfono</th>
-                        <th>Facturas</th>
-                        <th>Acciones</th>
+                        <th>{% trans "Nombre" %}</th>
+                        <th>{% trans "NIT" %}</th>
+                        <th>{% trans "Email" %}</th>
+                        <th>{% trans "Teléfono" %}</th>
+                        <th>{% trans "Facturas" %}</th>
+                        <th>{% trans "Acciones" %}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -53,15 +62,15 @@
                         <td>{{ p.telefono|default:"-" }}</td>
                         <td><span class="badge bg-primary bg-opacity-10 text-primary">{{ p.facturas_count }}</span></td>
                         <td>
-                            <a href="{% url 'proveedor_detail' p.id %}" class="btn btn-icon btn-outline-primary btn-sm" title="Ver"><i class="bi bi-eye"></i></a>
+                            <a href="{% url 'proveedor_detail' p.id %}" class="btn btn-icon btn-outline-primary btn-sm" title="{% trans 'Ver' %}"><i class="bi bi-eye"></i></a>
                             {% if user.is_staff %}
-                            <a href="{% url 'proveedor_edit' p.id %}" class="btn btn-icon btn-outline-warning btn-sm" title="Editar"><i class="bi bi-pencil"></i></a>
-                            <a href="{% url 'proveedor_delete' p.id %}" class="btn btn-icon btn-outline-danger btn-sm" data-confirm-delete title="Eliminar"><i class="bi bi-trash"></i></a>
+                            <a href="{% url 'proveedor_edit' p.id %}" class="btn btn-icon btn-outline-warning btn-sm" title="{% trans 'Editar' %}"><i class="bi bi-pencil"></i></a>
+                            <a href="{% url 'proveedor_delete' p.id %}" class="btn btn-icon btn-outline-danger btn-sm" data-confirm-delete title="{% trans 'Eliminar' %}"><i class="bi bi-trash"></i></a>
                             {% endif %}
                         </td>
                     </tr>
                     {% empty %}
-                    <tr><td colspan="6" class="text-center py-5 text-secondary"><i class="bi bi-building fs-1 d-block mb-2"></i>No hay proveedores registrados</td></tr>
+                    <tr><td colspan="6" class="text-center py-5 text-secondary"><i class="bi bi-building fs-1 d-block mb-2"></i>{% trans "No hay proveedores registrados" %}</td></tr>
                     {% endfor %}
                 </tbody>
             </table>

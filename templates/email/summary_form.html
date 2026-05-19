@@ -1,10 +1,19 @@
-<!-- Autor: Equipo VeriPay -->
 {% extends "base.html" %}
-{% block title %}Enviar Resumen por Correo{% endblock %}
+{% load i18n %}
+{% block title %}{% trans "Enviar Resumen por Correo" %}{% endblock %}
+{% block page_title %}{% trans "Enviar Resumen" %}{% endblock %}
+{% block breadcrumbs %}
+<nav aria-label="breadcrumb" class="mb-3">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">{% trans "Dashboard" %}</a></li>
+        <li class="breadcrumb-item active">{% trans "Enviar Resumen" %}</li>
+    </ol>
+</nav>
+{% endblock %}
 {% block content %}
 <div class="mb-4">
-    <h4 class="fw-bold mb-1"><i class="bi bi-envelope me-2"></i>Enviar Resumen por Correo</h4>
-    <p class="text-secondary mb-0">Envíe un resumen del estado de pagos a los proveedores</p>
+    <h4 class="fw-bold mb-1"><i class="bi bi-envelope me-2"></i>{% trans "Enviar Resumen por Correo" %}</h4>
+    <p class="text-secondary mb-0">{% trans "Envíe un resumen del estado de pagos a los proveedores" %}</p>
 </div>
 <div class="row justify-content-center">
     <div class="col-lg-6">
@@ -13,36 +22,36 @@
                 <form method="post">
                     {% csrf_token %}
                     <div class="mb-3">
-                        <label class="form-label">Correo(s) destinatario(s)</label>
-                        <input type="text" name="destinatarios" class="form-control" placeholder="email1@ejemplo.com, email2@ejemplo.com" required>
-                        <div class="form-text">Separe múltiples correos con comas</div>
+                        <label class="form-label">{% trans "Correo(s) destinatario(s)" %}</label>
+                        <input type="text" name="destinatarios" class="form-control" placeholder="email1@ejemplo.com, email2@ejemplo.com" value="{{ request.POST.destinatarios }}" required>
+                        <div class="form-text">{% trans "Separe múltiples correos con comas" %}</div>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Proveedor (opcional)</label>
+                        <label class="form-label">{% trans "Proveedor (opcional)" %}</label>
                         <select name="proveedor" class="form-select">
-                            <option value="">Todos los proveedores</option>
+                            <option value="">{% trans "Todos los proveedores" %}</option>
                             {% for p in proveedores %}
-                            <option value="{{ p.id }}">{{ p.nombre }}</option>
+                            <option value="{{ p.id }}" {% if request.POST.proveedor == p.id|stringformat:'s' %}selected{% endif %}>{{ p.nombre }}</option>
                             {% endfor %}
                         </select>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Incluir en el resumen</label>
+                        <label class="form-label">{% trans "Incluir en el resumen" %}</label>
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" name="incluir_facturas" id="chk1" checked>
-                            <label class="form-check-label" for="chk1">Facturas pendientes</label>
+                            <label class="form-check-label" for="chk1">{% trans "Facturas pendientes" %}</label>
                         </div>
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" name="incluir_conciliacion" id="chk2" checked>
-                            <label class="form-check-label" for="chk2">Última conciliación</label>
+                            <label class="form-check-label" for="chk2">{% trans "Última conciliación" %}</label>
                         </div>
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" name="incluir_pagos" id="chk3">
-                            <label class="form-check-label" for="chk3">Pagos recientes</label>
+                            <label class="form-check-label" for="chk3">{% trans "Pagos recientes" %}</label>
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary w-100 py-2">
-                        <i class="bi bi-send me-1"></i>Enviar Resumen
+                        <i class="bi bi-send me-1"></i>{% trans "Enviar Resumen" %}
                     </button>
                 </form>
             </div>

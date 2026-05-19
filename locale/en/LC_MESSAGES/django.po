@@ -1,196 +1,756 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: VeriPay 2.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-19 07:15-0500\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"POT-Creation-Date: 2026-05-19 00:00+0000\n"
+"PO-Revision-Date: 2026-05-19 00:00+0000\n"
+"Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-#: .\certificados\views.py:43
-msgid "Nuevo Certificado Bancario"
-msgstr "New Bank Certificate"
 
-#: .\certificados\views.py:47
-msgid "Certificado creado exitosamente."
-msgstr "Certificate created successfully."
+msgid "A continuación encontrará el resumen del estado de sus pagos:"
+msgstr "Below you will find the summary of your payments status:"
 
-#: .\certificados\views.py:62 .\facturas\views.py:82
-#, python-format
-msgid "Editar: %(numero)s"
-msgstr "Edit: %(numero)s"
+msgid "Acciones"
+msgstr "Actions"
 
-#: .\certificados\views.py:68
+msgid "Activo"
+msgstr "Active"
+
+msgid "Activos"
+msgstr "Active"
+
+msgid "Administración"
+msgstr "Administration"
+
+msgid "Administradores"
+msgstr "Admins"
+
+msgid "Aliados"
+msgstr "Allies"
+
+msgid "Archivo"
+msgstr "File"
+
+msgid "Archivo cargado y procesado: %(total)s registros."
+msgstr ""
+
+msgid "Archivo procesado: %(total)s registros."
+msgstr ""
+
+msgid "Archivos de Pagos"
+msgstr "Payment Files"
+
+msgid "Arrastre una imagen aquí o haga clic para seleccionar"
+msgstr "Drag an image here or click to select"
+
+msgid "Banco"
+msgstr "Bank"
+
+msgid "Bienvenido a VeriPay"
+msgstr "Welcome to VeriPay"
+
+msgid "Buscar"
+msgstr "Search"
+
+msgid "Buscar número factura..."
+msgstr "Search invoice number..."
+
+msgid "Buscar por nombre o NIT..."
+msgstr "Search by name or Tax ID..."
+
+msgid "Buscar por número o banco..."
+msgstr "Search by number or bank..."
+
+msgid "Cambiar tema"
+msgstr "Toggle theme"
+
+msgid "Cancelar"
+msgstr "Cancel"
+
+msgid "Carga y procesamiento de archivos bancarios"
+msgstr "Upload and process bank files"
+
+msgid "Cargar Archivo"
+msgstr "Upload File"
+
+msgid "Cargar Archivo de Pagos"
+msgstr "Upload Payment File"
+
+msgid "Cargar con OCR"
+msgstr "Upload with OCR"
+
+msgid "Cargar y Procesar"
+msgstr "Upload and Process"
+
+msgid "Cargue una imagen o PDF de factura para extraer datos automáticamente"
+msgstr "Upload an invoice image or PDF to extract data automatically"
+
+msgid "Catálogo del equipo aliado"
+msgstr "Allies team catalog"
+
+msgid "Cerrar sesión"
+msgstr "Logout"
+
+msgid "Certificado"
+msgstr "Certificate"
+
+msgid "Certificado Bancario"
+msgstr "Bank Certificate"
+
 msgid "Certificado actualizado."
 msgstr "Certificate updated."
 
-#: .\conciliacion\services.py:47
-msgid "Conciliación usando archivo de pagos"
-msgstr "Reconciliation using payments file"
+msgid "Certificado creado exitosamente."
+msgstr "Certificate created successfully."
 
-#: .\conciliacion\services.py:91
-msgid "Referencia encontrada en pagos"
-msgstr "Reference found in payments"
-
-#: .\conciliacion\services.py:98
-msgid "Monto dentro de tolerancia"
-msgstr "Amount within tolerance"
-
-#: .\conciliacion\services.py:102
-#, python-format
-msgid "Pago parcial: $%(monto)s"
-msgstr "Partial payment: $%(monto)s"
-
-#: .\conciliacion\services.py:113
-#, python-format
-msgid "Monto similar encontrado: $%(monto)s"
-msgstr "Similar amount found: $%(monto)s"
-
-#: .\conciliacion\services.py:126
-#, python-format
-msgid "Certificado: %(numero)s"
-msgstr "Certificate: %(numero)s"
-
-#: .\conciliacion\services.py:132
 msgid "Certificado verificado"
 msgstr "Certificate verified"
 
-#: .\conciliacion\services.py:152
-msgid "Sin coincidencias encontradas"
-msgstr "No matches found"
+msgid "Certificado: %(numero)s"
+msgstr "Certificate: %(numero)s"
 
-#: .\conciliacion\views.py:58
-#, python-format
+msgid "Certificados"
+msgstr "Certificates"
+
+msgid "Certificados Bancarios"
+msgstr "Bank Certificates"
+
+msgid "Coincidencias"
+msgstr "Matches"
+
+msgid "Coincidencias de Conciliación"
+msgstr "Reconciliation Matches"
+
+msgid ""
+"Compara todas las facturas pendientes contra los registros de pago y "
+"certificados bancarios, asignando un porcentaje de confianza a cada "
+"coincidencia."
+msgstr ""
+"Compares all pending invoices against payment records and bank certificates,"
+" assigning a confidence percentage to each match."
+
+msgid "Comprobantes de pago bancarios"
+msgstr "Bank payment receipts"
+
+msgid "Concepto"
+msgstr "Concept"
+
+msgid "Concilia facturas, pagos y certificados bancarios de forma automática."
+msgstr "Automatically reconcile invoices, payments and bank certificates."
+
+msgid "Conciliaciones"
+msgstr "Reconciliations"
+
+msgid "Conciliación"
+msgstr "Reconciliation"
+
+msgid "Conciliación - Detalle"
+msgstr ""
+
 msgid ""
 "Conciliación finalizada: %(conciliadas)s/%(total)s facturas conciliadas."
 msgstr ""
-"Reconciliation completed: %(conciliadas)s/%(total)s invoices reconciled."
 
-#: .\conciliacion\views.py:71
-#, python-format
-msgid "conciliacion_%(id)s.pdf"
-msgstr "reconciliation_%(id)s.pdf"
+msgid "Conciliación usando archivo de pagos"
+msgstr "Reconciliation using payments file"
 
-#: .\core\admin_panel\views.py:51 .\core\admin_panel\views.py:63
+msgid "Conciliadas"
+msgstr "Reconciled"
+
+msgid "Confianza"
+msgstr "Confidence"
+
+msgid "Confianza %"
+msgstr "Confidence %"
+
+msgid "Configurar Reporte"
+msgstr "Configure Report"
+
+msgid "Consultado"
+msgstr "Checked"
+
+msgid "Contraseña"
+msgstr "Password"
+
+msgid "Correo(s) destinatario(s)"
+msgstr "Recipient email(s)"
+
+msgid "Crear Factura"
+msgstr "Create Invoice"
+
 msgid "Crear Usuario"
 msgstr "Create User"
 
-#: .\core\admin_panel\views.py:60
-msgid "Usuario creado exitosamente."
-msgstr "User created successfully."
+msgid "Cuenta"
+msgstr "Account"
 
-#: .\core\admin_panel\views.py:73 .\core\admin_panel\views.py:87
-#, python-format
+msgid "Cuenta Origen"
+msgstr "Source Account"
+
+msgid "Dashboard"
+msgstr "Dashboard"
+
+msgid "Datos Extraídos — Verifique y Confirme"
+msgstr "Extracted Data — Review and Confirm"
+
+msgid "Debe ingresar al menos un correo destinatario."
+msgstr "You must enter at least one recipient email."
+
+msgid "Descargar Reporte"
+msgstr "Download Report"
+
+msgid "Detalle"
+msgstr "Detail"
+
+msgid "Detalle de Conciliación"
+msgstr "Reconciliation Detail"
+
+msgid "Detalle de Factura"
+msgstr "Invoice Detail"
+
+msgid "Editar"
+msgstr "Edit"
+
 msgid "Editar Usuario: %(username)s"
 msgstr "Edit User: %(username)s"
 
-#: .\core\admin_panel\views.py:83
-msgid "Usuario actualizado."
-msgstr "User updated."
-
-#: .\core\views.py:103
-msgid "No hay conciliaciones para reportar."
-msgstr "There are no reconciliations to report."
-
-#: .\core\views.py:111
-#, python-format
-msgid "reporte_%(tipo)s.pdf"
-msgstr "report_%(tipo)s.pdf"
-
-#: .\core\views.py:126
-msgid "Debe ingresar al menos un correo destinatario."
-msgstr "You must enter at least one recipient email address."
-
-#: .\core\views.py:146
-#, python-format
-msgid "Resumen enviado a %(destinatarios)s"
-msgstr "Summary sent to %(destinatarios)s"
-
-#: .\core\views.py:153
-msgid ""
-"El correo se configuró pero no se pudo enviar (verifique configuración SMTP)."
-msgstr ""
-"The email was configured but could not be sent (check SMTP configuration)."
-
-#: .\facturas\views.py:63
-msgid "Nueva Factura"
-msgstr "New Invoice"
-
-#: .\facturas\views.py:67
-msgid "Factura creada exitosamente."
-msgstr "Invoice created successfully."
-
-#: .\facturas\views.py:86
-msgid "Factura actualizada."
-msgstr "Invoice updated."
-
-#: .\facturas\views.py:124
-msgid "Factura creada desde OCR exitosamente."
-msgstr "Invoice created from OCR successfully."
-
-#: .\pagos\views.py:39
-#, python-format
-msgid "Archivo cargado y procesado: %(total)s registros."
-msgstr "File uploaded and processed: %(total)s records."
-
-#: .\pagos\views.py:57
-#, python-format
-msgid "Archivo procesado: %(total)s registros."
-msgstr "File processed: %(total)s records."
-
-#: .\proveedores\views.py:63
-msgid "Nuevo Proveedor"
-msgstr "New Supplier"
-
-#: .\proveedores\views.py:67
-msgid "Proveedor creado exitosamente."
-msgstr "Supplier created successfully."
-
-#: .\proveedores\views.py:82
-#, python-format
 msgid "Editar: %(nombre)s"
 msgstr "Edit: %(nombre)s"
 
-#: .\proveedores\views.py:86
+msgid "Editar: %(numero)s"
+msgstr "Edit: %(numero)s"
+
+msgid "Ejecutar Conciliación"
+msgstr "Run Reconciliation"
+
+msgid ""
+"El correo se configuró pero no se pudo enviar (verifique configuración "
+"SMTP)."
+msgstr "Email was configured but could not be sent (check SMTP settings)."
+
+msgid "El servicio respondió pero no devolvió elementos."
+msgstr "The service responded but returned no items."
+
+msgid "Eliminar"
+msgstr "Delete"
+
+msgid "Email"
+msgstr "Email"
+
+msgid "English"
+msgstr "English"
+
+msgid "Enviar Resumen"
+msgstr "Send Summary"
+
+msgid "Enviar Resumen por Correo"
+msgstr "Send Email Summary"
+
+msgid "Envíe un resumen del estado de pagos a los proveedores"
+msgstr "Send a payment status summary to suppliers"
+
+msgid "Error al consumir el servicio:"
+msgstr "Error consuming service:"
+
+msgid "Español"
+msgstr "Spanish"
+
+msgid "Estado"
+msgstr "Status"
+
+msgid "Este es un correo generado automáticamente por VeriPay."
+msgstr "This is an automated email from VeriPay."
+
+msgid "Estimado proveedor,"
+msgstr "Dear supplier,"
+
+msgid "Exportar PDF"
+msgstr "Export PDF"
+
+msgid "Externos"
+msgstr "External"
+
+msgid "Factura"
+msgstr "Invoice"
+
+msgid "Factura actualizada."
+msgstr "Invoice updated."
+
+msgid "Factura creada desde OCR exitosamente."
+msgstr "Invoice created from OCR successfully."
+
+msgid "Factura creada exitosamente."
+msgstr "Invoice created successfully."
+
+msgid "Facturas"
+msgstr "Invoices"
+
+msgid "Facturas Pendientes"
+msgstr "Pending Invoices"
+
+msgid "Facturas del proveedor"
+msgstr "Supplier invoices"
+
+msgid "Facturas pendientes"
+msgstr "Pending invoices"
+
+msgid "Facturas por Estado"
+msgstr "Invoices by Status"
+
+msgid "Fecha"
+msgstr "Date"
+
+msgid "Fecha Desde"
+msgstr "Date From"
+
+msgid "Fecha Emisión"
+msgstr "Issue Date"
+
+msgid "Fecha Hasta"
+msgstr "Date To"
+
+msgid "Fecha Pago"
+msgstr "Payment Date"
+
+msgid "Fecha Vencimiento"
+msgstr "Due Date"
+
+msgid "Fecha emisión"
+msgstr ""
+
+msgid "Filtrar"
+msgstr "Filter"
+
+msgid "Formato"
+msgstr "Format"
+
+msgid "Formato de salida"
+msgstr "Output Format"
+
+msgid "Formatos: JPG, PNG, PDF — Máximo 10MB"
+msgstr "Formats: JPG, PNG, PDF — Max 10MB"
+
+msgid "Generación de Reportes"
+msgstr "Report Generation"
+
+msgid "Genere reportes en PDF o Excel del estado de facturas y conciliaciones"
+msgstr "Generate PDF or Excel reports of invoice and reconciliation status"
+
+msgid "Gestión"
+msgstr "Management"
+
+msgid "Gestión de facturas de proveedores"
+msgstr "Manage supplier invoices"
+
+msgid "Gestión de proveedores del sistema"
+msgstr "Manage system suppliers"
+
+msgid "Gestión de usuarios y configuración del sistema"
+msgstr "User management and system configuration"
+
+msgid "Guardar"
+msgstr "Save"
+
+msgid "Historial de procesos de conciliación ejecutados"
+msgstr "History of executed reconciliations"
+
+msgid "ID"
+msgstr "ID"
+
+msgid "Idioma"
+msgstr "Language"
+
+msgid "Inactivo"
+msgstr "Inactive"
+
+msgid "Incluir en el resumen"
+msgstr "Include in summary"
+
+msgid "Indicadores y actividad reciente del sistema"
+msgstr "KPIs and recent system activity"
+
+msgid ""
+"Información consumida en tiempo real desde el servicio JSON expuesto por el "
+"equipo precedente."
+msgstr ""
+"Information consumed in real time from the JSON service exposed by the "
+"previous team."
+
+msgid "Ingrese su contraseña"
+msgstr "Enter your password"
+
+msgid "Ingrese su usuario"
+msgstr "Enter your username"
+
+msgid "Iniciar Sesión"
+msgstr "Sign In"
+
+msgid "Intentar de nuevo"
+msgstr "Try again"
+
+msgid "Limpiar"
+msgstr "Clear"
+
+msgid "Monto"
+msgstr "Amount"
+
+msgid "Monto Pagado"
+msgstr "Amount Paid"
+
+msgid "Monto Pendiente"
+msgstr "Pending Amount"
+
+msgid "Monto Total"
+msgstr "Total Amount"
+
+msgid "Monto dentro de tolerancia"
+msgstr "Amount within tolerance"
+
+msgid "Monto similar encontrado: $%(monto)s"
+msgstr "Similar amount found: $%(monto)s"
+
+msgid "NIT"
+msgstr "Tax ID"
+
+msgid "No"
+msgstr "No"
+
+msgid "No Encontrada"
+msgstr "Not Found"
+
+msgid "No hay archivos de pagos"
+msgstr "No payment files"
+
+msgid "No hay certificados"
+msgstr "No certificates"
+
+msgid "No hay conciliaciones ejecutadas"
+msgstr "No reconciliations executed"
+
+msgid "No hay conciliaciones para reportar."
+msgstr "No reconciliations to report."
+
+msgid "No hay facturas registradas"
+msgstr "No invoices registered"
+
+msgid "No hay proveedores registrados"
+msgstr "No suppliers registered"
+
+msgid "No registrado"
+msgstr "Not registered"
+
+msgid "Nombre"
+msgstr "Name"
+
+msgid "Nueva"
+msgstr "New"
+
+msgid "Nueva Conciliación"
+msgstr "New Reconciliation"
+
+msgid "Nueva Factura"
+msgstr "New Invoice"
+
+msgid "Nuevo Certificado"
+msgstr "New Certificate"
+
+msgid "Nuevo Certificado Bancario"
+msgstr "New Bank Certificate"
+
+msgid "Nuevo Proveedor"
+msgstr "New Supplier"
+
+msgid "Nuevo Usuario"
+msgstr "New User"
+
+msgid "Nunca"
+msgstr "Never"
+
+msgid "Número"
+msgstr "Number"
+
+msgid "OCR"
+msgstr "OCR"
+
+msgid "OCR - Cargar Factura"
+msgstr "OCR - Upload Invoice"
+
+msgid "OCR - Lectura de Facturas"
+msgstr "OCR - Invoice Reading"
+
+msgid "OCR - Resultado"
+msgstr "OCR - Result"
+
+msgid "OCR Facturas"
+msgstr "OCR Invoices"
+
+msgid "Observación"
+msgstr "Note"
+
+msgid "Pagada"
+msgstr "Paid"
+
+msgid "Pago"
+msgstr "Payment"
+
+msgid "Pago Ref."
+msgstr "Payment Ref."
+
+msgid "Pago parcial: $%(monto)s"
+msgstr "Partial payment: $%(monto)s"
+
+msgid "Pagos"
+msgstr "Payments"
+
+msgid "Pagos Recientes"
+msgstr "Recent Payments"
+
+msgid "Pagos recientes"
+msgstr "Recent payments"
+
+msgid "Panel Admin"
+msgstr "Admin Panel"
+
+msgid "Panel de Administración"
+msgstr "Administration Panel"
+
+msgid "Parcial"
+msgstr "Partial"
+
+msgid "Pendiente"
+msgstr "Pending"
+
+msgid "Pendientes"
+msgstr "Pending"
+
+msgid ""
+"Porcentaje de diferencia permitido entre el monto de la factura y el pago."
+msgstr "Allowed difference percentage between invoice amount and payment."
+
+msgid "Principal"
+msgstr "Main"
+
+msgid "Procesado"
+msgstr "Processed"
+
+msgid "Procesar"
+msgstr "Process"
+
+msgid "Procesar con OCR"
+msgstr "Process with OCR"
+
+msgid "Procesos"
+msgstr "Processes"
+
+msgid "Procesos de Conciliación"
+msgstr "Reconciliation Processes"
+
+msgid "Productos / Servicios de Aliados"
+msgstr "Allies Products / Services"
+
+msgid "Proveedor"
+msgstr "Supplier"
+
+msgid "Proveedor (opcional)"
+msgstr "Supplier (optional)"
+
 msgid "Proveedor actualizado."
 msgstr "Supplier updated."
 
-#: .\proveedores\views.py:98
+msgid "Proveedor creado exitosamente."
+msgstr "Supplier created successfully."
+
 msgid "Proveedor eliminado."
 msgstr "Supplier deleted."
 
-#: .\reportes\services\report_generators.py:16
-msgid "report.pdf"
-msgstr "report.pdf"
+msgid "Proveedores"
+msgstr "Suppliers"
 
-#: .\reportes\services\report_generators.py:17
-#, python-format
-msgid "Reporte PDF generado con %(total)s registros."
-msgstr "PDF report generated with %(total)s records."
+msgid "Rechazada"
+msgstr "Rejected"
 
-#: .\reportes\services\report_generators.py:28
-msgid "report.xlsx"
-msgstr "report.xlsx"
+msgid "Referencia"
+msgstr "Reference"
 
-#: .\reportes\services\report_generators.py:29
-#, python-format
-msgid "Reporte Excel generado con %(total)s registros."
-msgstr "Excel report generated with %(total)s records."
+msgid "Referencia encontrada en pagos"
+msgstr "Reference found in payments"
 
-#: .\reportes\views.py:21
-msgid "Proveedor Demo"
-msgstr "Demo Supplier"
+msgid "Registrado"
+msgstr "Registered"
 
-#: .\reportes\views.py:22
-msgid "Factura Demo"
-msgstr "Demo Invoice"
+msgid "Registros"
+msgstr "Records"
+
+msgid "Registros de Pago"
+msgstr "Payment Records"
+
+msgid "Registros de pago"
+msgstr "Payment records"
+
+msgid "Registros del archivo"
+msgstr "File records"
+
+msgid "Reporte de Conciliación"
+msgstr "Reconciliation Report"
+
+msgid "Reporte de Facturas"
+msgstr "Invoice Report"
+
+msgid "Reporte de Proveedores"
+msgstr "Supplier Report"
+
+msgid "Reportes"
+msgstr "Reports"
+
+msgid "Resultado"
+msgstr "Result"
+
+msgid "Resultado OCR"
+msgstr "OCR Result"
+
+msgid "Resumen de Estado de Pagos"
+msgstr "Payment Status Summary"
+
+msgid "Resumen enviado a %(destinatarios)s"
+msgstr "Summary sent to %(destinatarios)s"
+
+msgid "Resumen general"
+msgstr "Overview"
+
+msgid "Separe múltiples correos con comas"
+msgstr "Separate multiple emails with commas"
+
+msgid "Servicio no configurado."
+msgstr "Service not configured."
+
+msgid "Sin archivo"
+msgstr "No file"
+
+msgid "Sin coincidencias"
+msgstr "No matches"
+
+msgid "Sin coincidencias encontradas"
+msgstr ""
+
+msgid "Sin conciliaciones"
+msgstr "No reconciliations"
+
+msgid "Sin facturas"
+msgstr "No invoices"
+
+msgid "Sin facturas registradas"
+msgstr "No invoices registered"
+
+msgid "Sin registros"
+msgstr "No records"
+
+msgid "Sistema de Conciliación"
+msgstr "Reconciliation System"
+
+msgid "Sistema de Conciliación de Pagos"
+msgstr "Payment Reconciliation System"
+
+msgid "Staff"
+msgstr "Staff"
+
+msgid "Sí"
+msgstr "Yes"
+
+msgid "TRM"
+msgstr "TRM"
+
+msgid "Tasa de cambio oficial de la Superfinanciera de Colombia"
+msgstr "Official exchange rate from the Colombian Financial Superintendency"
+
+msgid "Teléfono"
+msgstr "Phone"
+
+msgid "Texto Extraído (OCR)"
+msgstr "Extracted Text (OCR)"
+
+msgid "Tipo"
+msgstr "Type"
+
+msgid "Tipo de Reporte"
+msgstr "Report Type"
+
+msgid "Todos los estados"
+msgstr "All statuses"
+
+msgid "Todos los proveedores"
+msgstr "All suppliers"
+
+msgid "Tolerancia"
+msgstr "Tolerance"
+
+msgid "Tolerancia de monto (%)"
+msgstr "Amount tolerance (%)"
+
+msgid "Total"
+msgstr "Total"
+
+msgid "Total Facturas"
+msgstr "Total Invoices"
+
+msgid "UUID Fiscal"
+msgstr "Tax UUID"
+
+msgid "Usuario"
+msgstr "Username"
+
+msgid "Usuario actualizado."
+msgstr "User updated."
+
+msgid "Usuario creado exitosamente."
+msgstr "User created successfully."
+
+msgid "Usuario o contraseña incorrectos."
+msgstr "Invalid username or password."
+
+msgid "Usuarios"
+msgstr "Users"
+
+msgid "Usuarios del Sistema"
+msgstr "System Users"
+
+msgid "Ver"
+msgstr "View"
+
+msgid "Ver registros"
+msgstr "View records"
+
+msgid "Ver todas"
+msgstr "View all"
+
+msgid "Verificado"
+msgstr "Verified"
+
+msgid "conciliacion_%(id)s.pdf"
+msgstr ""
+
+msgid "reporte_%(tipo)s.pdf"
+msgstr "report_%(tipo)s.pdf"
+
+msgid "reporte_%(tipo)s.xlsx"
+msgstr "report_%(tipo)s.xlsx"
+
+msgid "¿Qué hace la conciliación?"
+msgstr "What does reconciliation do?"
+
+msgid "Última Conciliación"
+msgstr "Latest Reconciliation"
+
+msgid "Última conciliación"
+msgstr "Latest reconciliation"
+
+msgid "Últimas Conciliaciones"
+msgstr "Latest Reconciliations"
+
+msgid "Últimas Facturas"
+msgstr "Latest Invoices"
+
+msgid "Último acceso"
+msgstr "Last login"

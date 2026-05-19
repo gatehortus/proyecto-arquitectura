@@ -1,0 +1,38 @@
+steps:
+  - name: gcr.io/cloud-builders/docker
+    args:
+      - build
+      - -t
+      - gcr.io/$PROJECT_ID/veripay:$SHORT_SHA
+      - -t
+      - gcr.io/$PROJECT_ID/veripay:latest
+      - .
+
+  - name: gcr.io/cloud-builders/docker
+    args: [push, gcr.io/$PROJECT_ID/veripay:$SHORT_SHA]
+
+  - name: gcr.io/cloud-builders/docker
+    args: [push, gcr.io/$PROJECT_ID/veripay:latest]
+
+  - name: gcr.io/google.com/cloudsdktool/cloud-sdk
+    entrypoint: gcloud
+    args:
+      - run
+      - deploy
+      - veripay
+      - --image=gcr.io/$PROJECT_ID/veripay:$SHORT_SHA
+      - --region=us-central1
+      - --platform=managed
+      - --allow-unauthenticated
+      - --memory=512Mi
+      - --cpu=1
+      - --port=8080
+      - --add-cloudsql-instances=$PROJECT_ID:us-central1:veripay-db
+      - --set-env-vars=DJANGO_DEBUG=False,DJANGO_ALLOWED_HOSTS=*.run.app,CSRF_TRUSTED_ORIGINS=https://*.run.app
+
+images:
+  - gcr.io/$PROJECT_ID/veripay:$SHORT_SHA
+  - gcr.io/$PROJECT_ID/veripay:latest
+
+options:
+  logging: CLOUD_LOGGING_ONLY

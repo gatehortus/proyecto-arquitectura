@@ -1,26 +1,34 @@
 from django.contrib.auth.decorators import login_required
-from django.http import JsonResponse
-from django.utils.translation import gettext as _
+from django.http import HttpResponse
 
-from .services.report_generators import ExcelReportGenerator, PDFReportGenerator
+from .services.report_generators import (
+    ExcelReportGenerator,
+    PDFReportGenerator,
+    ReportGenerator,
+)
 
 
-def get_report_generator(tipo):
-    generators = {
-        'pdf': PDFReportGenerator,
-        'excel': ExcelReportGenerator,
-    }
-    generator_class = generators.get(tipo, PDFReportGenerator)
+GENERATORS = {
+    'pdf': PDFReportGenerator,
+    'excel': ExcelReportGenerator,
+}
+
+
+def get_report_generator(formato) -> ReportGenerator:
+    generator_class = GENERATORS.get(formato, PDFReportGenerator)
     return generator_class()
 
 
 @login_required
 def generar_reporte(request):
-    tipo = request.GET.get('tipo')
-    data = [
-        {'id': 1, 'nombre': _("Proveedor Demo")},
-        {'id': 2, 'nombre': _("Factura Demo")},
-    ]
-    generator = get_report_generator(tipo)
-    result = generator.generate(data)
-    return JsonResponse(result)
+    tipo = request.GET.get('tipo', 'facturas')
+    formato = request.GET.get('formato', 'pdf')
+    generator = get_report_generator(formato)
+    contenido, filename, mime = generator.generate({
+        'tipo': tipo,
+        'fecha_desde': request.GET.get('fecha_desde'),
+        'fecha_hasta': request.GET.get('fecha_hasta'),
+    })
+    response = HttpResponse(contenido, content_type=mime)
+    response['Content-Disposition'] = f'attachment; filename="{filename}"'
+    return response

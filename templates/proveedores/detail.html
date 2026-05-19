@@ -1,13 +1,17 @@
-<!-- Autor: Equipo VeriPay -->
 {% extends "base.html" %}
+{% load i18n %}
 {% block title %}{{ proveedor.nombre }}{% endblock %}
-{% block content %}
+{% block page_title %}{{ proveedor.nombre }}{% endblock %}
+{% block breadcrumbs %}
 <nav aria-label="breadcrumb" class="mb-3">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="{% url 'proveedor_list' %}">Proveedores</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">{% trans "Dashboard" %}</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'proveedor_list' %}">{% trans "Proveedores" %}</a></li>
         <li class="breadcrumb-item active">{{ proveedor.nombre }}</li>
     </ol>
 </nav>
+{% endblock %}
+{% block content %}
 <div class="row g-4">
     <div class="col-lg-4">
         <div class="card">
@@ -16,16 +20,16 @@
                     <i class="bi bi-building"></i>
                 </div>
                 <h5 class="fw-bold">{{ proveedor.nombre }}</h5>
-                <p class="text-secondary mb-3">NIT: {{ proveedor.nit }}</p>
+                <p class="text-secondary mb-3">{% trans "NIT" %}: {{ proveedor.nit }}</p>
                 <ul class="list-unstyled text-start">
-                    <li class="py-2 border-bottom"><i class="bi bi-envelope me-2 text-primary"></i>{{ proveedor.email|default:"No registrado" }}</li>
-                    <li class="py-2 border-bottom"><i class="bi bi-telephone me-2 text-primary"></i>{{ proveedor.telefono|default:"No registrado" }}</li>
-                    <li class="py-2"><i class="bi bi-calendar me-2 text-primary"></i>Registrado: {{ proveedor.created_at|date:"d/m/Y" }}</li>
+                    <li class="py-2 border-bottom"><i class="bi bi-envelope me-2 text-primary"></i>{{ proveedor.email|default:_("No registrado") }}</li>
+                    <li class="py-2 border-bottom"><i class="bi bi-telephone me-2 text-primary"></i>{{ proveedor.telefono|default:_("No registrado") }}</li>
+                    <li class="py-2"><i class="bi bi-calendar me-2 text-primary"></i>{% trans "Registrado" %}: {{ proveedor.created_at|date:"d/m/Y" }}</li>
                 </ul>
                 {% if user.is_staff %}
                 <div class="d-flex gap-2 mt-3">
-                    <a href="{% url 'proveedor_edit' proveedor.id %}" class="btn btn-outline-warning flex-fill"><i class="bi bi-pencil me-1"></i>Editar</a>
-                    <a href="{% url 'proveedor_delete' proveedor.id %}" class="btn btn-outline-danger flex-fill" data-confirm-delete><i class="bi bi-trash me-1"></i>Eliminar</a>
+                    <a href="{% url 'proveedor_edit' proveedor.id %}" class="btn btn-outline-warning flex-fill"><i class="bi bi-pencil me-1"></i>{% trans "Editar" %}</a>
+                    <a href="{% url 'proveedor_delete' proveedor.id %}" class="btn btn-outline-danger flex-fill" data-confirm-delete><i class="bi bi-trash me-1"></i>{% trans "Eliminar" %}</a>
                 </div>
                 {% endif %}
             </div>
@@ -34,14 +38,14 @@
     <div class="col-lg-8">
         <div class="card">
             <div class="card-header d-flex justify-content-between align-items-center">
-                <span><i class="bi bi-file-earmark-text me-2"></i>Facturas del proveedor</span>
+                <span><i class="bi bi-file-earmark-text me-2"></i>{% trans "Facturas del proveedor" %}</span>
                 <span class="badge bg-primary">{{ facturas.count }}</span>
             </div>
             <div class="card-body p-0">
                 <div class="table-responsive">
                     <table class="table table-hover mb-0">
                         <thead>
-                            <tr><th>Número</th><th>Monto</th><th>Fecha</th><th>Estado</th></tr>
+                            <tr><th>{% trans "Número" %}</th><th>{% trans "Monto" %}</th><th>{% trans "Fecha" %}</th><th>{% trans "Estado" %}</th></tr>
                         </thead>
                         <tbody>
                             {% for f in facturas %}
@@ -52,7 +56,7 @@
                                 <td><span class="status-badge badge-{{ f.estado|lower }}">{{ f.get_estado_display }}</span></td>
                             </tr>
                             {% empty %}
-                            <tr><td colspan="4" class="text-center py-4 text-secondary">Sin facturas</td></tr>
+                            <tr><td colspan="4" class="text-center py-4 text-secondary">{% trans "Sin facturas" %}</td></tr>
                             {% endfor %}
                         </tbody>
                     </table>

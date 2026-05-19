@@ -1,10 +1,19 @@
-<!-- Autor: Equipo VeriPay -->
 {% extends "base.html" %}
-{% block title %}Panel de Administración{% endblock %}
+{% load i18n %}
+{% block title %}{% trans "Panel de Administración" %}{% endblock %}
+{% block page_title %}{% trans "Panel Admin" %}{% endblock %}
+{% block breadcrumbs %}
+<nav aria-label="breadcrumb" class="mb-3">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">{% trans "Dashboard" %}</a></li>
+        <li class="breadcrumb-item active">{% trans "Panel Admin" %}</li>
+    </ol>
+</nav>
+{% endblock %}
 {% block content %}
 <div class="mb-4">
-    <h4 class="fw-bold mb-1"><i class="bi bi-gear me-2"></i>Panel de Administración</h4>
-    <p class="text-secondary mb-0">Gestión de usuarios y configuración del sistema</p>
+    <h4 class="fw-bold mb-1"><i class="bi bi-gear me-2"></i>{% trans "Panel de Administración" %}</h4>
+    <p class="text-secondary mb-0">{% trans "Gestión de usuarios y configuración del sistema" %}</p>
 </div>
 
 <div class="row g-4 mb-4">
@@ -13,7 +22,7 @@
             <div class="card-body text-center">
                 <div class="kpi-icon mx-auto mb-2 bg-primary bg-opacity-10 text-primary"><i class="bi bi-people"></i></div>
                 <h3 class="kpi-value">{{ total_users }}</h3>
-                <p class="kpi-label">Usuarios</p>
+                <p class="kpi-label">{% trans "Usuarios" %}</p>
             </div>
         </div>
     </div>
@@ -22,7 +31,7 @@
             <div class="card-body text-center">
                 <div class="kpi-icon mx-auto mb-2 bg-success bg-opacity-10 text-success"><i class="bi bi-person-check"></i></div>
                 <h3 class="kpi-value">{{ active_users }}</h3>
-                <p class="kpi-label">Activos</p>
+                <p class="kpi-label">{% trans "Activos" %}</p>
             </div>
         </div>
     </div>
@@ -31,7 +40,7 @@
             <div class="card-body text-center">
                 <div class="kpi-icon mx-auto mb-2 bg-warning bg-opacity-10 text-warning"><i class="bi bi-shield-lock"></i></div>
                 <h3 class="kpi-value">{{ staff_users }}</h3>
-                <p class="kpi-label">Administradores</p>
+                <p class="kpi-label">{% trans "Administradores" %}</p>
             </div>
         </div>
     </div>
@@ -39,14 +48,14 @@
 
 <div class="card">
     <div class="card-header d-flex justify-content-between align-items-center">
-        <span><i class="bi bi-people me-2"></i>Usuarios del Sistema</span>
-        <a href="{% url 'admin_user_create' %}" class="btn btn-sm btn-primary"><i class="bi bi-plus-lg me-1"></i>Nuevo Usuario</a>
+        <span><i class="bi bi-people me-2"></i>{% trans "Usuarios del Sistema" %}</span>
+        <a href="{% url 'admin_user_create' %}" class="btn btn-sm btn-primary"><i class="bi bi-plus-lg me-1"></i>{% trans "Nuevo Usuario" %}</a>
     </div>
     <div class="card-body p-0">
         <div class="table-responsive">
             <table class="table table-hover mb-0">
                 <thead>
-                    <tr><th>Usuario</th><th>Email</th><th>Staff</th><th>Activo</th><th>Último acceso</th><th>Acciones</th></tr>
+                    <tr><th>{% trans "Usuario" %}</th><th>{% trans "Email" %}</th><th>{% trans "Staff" %}</th><th>{% trans "Activo" %}</th><th>{% trans "Último acceso" %}</th><th>{% trans "Acciones" %}</th></tr>
                 </thead>
                 <tbody>
                     {% for u in users %}
@@ -54,8 +63,8 @@
                         <td class="fw-semibold">{{ u.username }}</td>
                         <td>{{ u.email|default:"-" }}</td>
                         <td>{% if u.is_staff %}<i class="bi bi-check-circle text-success"></i>{% else %}<i class="bi bi-x-circle text-secondary"></i>{% endif %}</td>
-                        <td>{% if u.is_active %}<span class="status-badge badge-pagada">Activo</span>{% else %}<span class="status-badge badge-rechazada">Inactivo</span>{% endif %}</td>
-                        <td>{{ u.last_login|date:"d/m/Y H:i"|default:"Nunca" }}</td>
+                        <td>{% if u.is_active %}<span class="status-badge badge-pagada">{% trans "Activo" %}</span>{% else %}<span class="status-badge badge-rechazada">{% trans "Inactivo" %}</span>{% endif %}</td>
+                        <td>{{ u.last_login|date:"d/m/Y H:i"|default:_("Nunca") }}</td>
                         <td><a href="{% url 'admin_user_edit' u.id %}" class="btn btn-icon btn-outline-warning btn-sm"><i class="bi bi-pencil"></i></a></td>
                     </tr>
                     {% endfor %}

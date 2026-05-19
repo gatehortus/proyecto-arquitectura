@@ -1,33 +1,37 @@
-<!-- Autor: Equipo VeriPay -->
 {% extends "base.html" %}
-{% block title %}Factura {{ factura.numero_factura }}{% endblock %}
-{% block content %}
+{% load i18n %}
+{% block title %}{% trans "Factura" %} {{ factura.numero_factura }}{% endblock %}
+{% block page_title %}{% trans "Factura" %} {{ factura.numero_factura }}{% endblock %}
+{% block breadcrumbs %}
 <nav aria-label="breadcrumb" class="mb-3">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="{% url 'factura_list' %}">Facturas</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">{% trans "Dashboard" %}</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'factura_list' %}">{% trans "Facturas" %}</a></li>
         <li class="breadcrumb-item active">{{ factura.numero_factura }}</li>
     </ol>
 </nav>
+{% endblock %}
+{% block content %}
 <div class="row g-4">
     <div class="col-lg-5">
         <div class="card">
-            <div class="card-header"><i class="bi bi-file-earmark-text me-2"></i>Detalle de Factura</div>
+            <div class="card-header"><i class="bi bi-file-earmark-text me-2"></i>{% trans "Detalle de Factura" %}</div>
             <div class="card-body">
                 <div class="mb-3 text-center">
                     <span class="status-badge badge-{{ factura.estado|lower }}" style="font-size:0.9rem;padding:6px 16px;">{{ factura.get_estado_display }}</span>
                 </div>
                 <table class="table table-borderless">
-                    <tr><td class="text-secondary">Número</td><td class="fw-semibold">{{ factura.numero_factura }}</td></tr>
-                    <tr><td class="text-secondary">Proveedor</td><td><a href="{% url 'proveedor_detail' factura.proveedor.id %}">{{ factura.proveedor.nombre }}</a></td></tr>
-                    <tr><td class="text-secondary">UUID Fiscal</td><td>{{ factura.uuid_fiscal|default:"-" }}</td></tr>
-                    <tr><td class="text-secondary">Monto Total</td><td class="fw-bold text-primary">${{ factura.monto_total|floatformat:2 }}</td></tr>
-                    <tr><td class="text-secondary">Monto Pagado</td><td class="fw-bold text-success">${{ factura.monto_pagado|floatformat:2 }}</td></tr>
-                    <tr><td class="text-secondary">Fecha Emisión</td><td>{{ factura.fecha_emision|date:"d/m/Y" }}</td></tr>
-                    <tr><td class="text-secondary">Fecha Vencimiento</td><td>{{ factura.fecha_vencimiento|date:"d/m/Y"|default:"-" }}</td></tr>
+                    <tr><td class="text-secondary">{% trans "Número" %}</td><td class="fw-semibold">{{ factura.numero_factura }}</td></tr>
+                    <tr><td class="text-secondary">{% trans "Proveedor" %}</td><td><a href="{% url 'proveedor_detail' factura.proveedor.id %}">{{ factura.proveedor.nombre }}</a></td></tr>
+                    <tr><td class="text-secondary">{% trans "UUID Fiscal" %}</td><td>{{ factura.uuid_fiscal|default:"-" }}</td></tr>
+                    <tr><td class="text-secondary">{% trans "Monto Total" %}</td><td class="fw-bold text-primary">${{ factura.monto_total|floatformat:2 }}</td></tr>
+                    <tr><td class="text-secondary">{% trans "Monto Pagado" %}</td><td class="fw-bold text-success">${{ factura.monto_pagado|floatformat:2 }}</td></tr>
+                    <tr><td class="text-secondary">{% trans "Fecha Emisión" %}</td><td>{{ factura.fecha_emision|date:"d/m/Y" }}</td></tr>
+                    <tr><td class="text-secondary">{% trans "Fecha Vencimiento" %}</td><td>{{ factura.fecha_vencimiento|date:"d/m/Y"|default:"-" }}</td></tr>
                 </table>
                 {% if user.is_staff %}
                 <div class="d-flex gap-2">
-                    <a href="{% url 'factura_edit' factura.id %}" class="btn btn-outline-warning flex-fill"><i class="bi bi-pencil me-1"></i>Editar</a>
+                    <a href="{% url 'factura_edit' factura.id %}" class="btn btn-outline-warning flex-fill"><i class="bi bi-pencil me-1"></i>{% trans "Editar" %}</a>
                 </div>
                 {% endif %}
             </div>
@@ -35,12 +39,12 @@
     </div>
     <div class="col-lg-7">
         <div class="card">
-            <div class="card-header"><i class="bi bi-arrow-left-right me-2"></i>Coincidencias de Conciliación</div>
+            <div class="card-header"><i class="bi bi-arrow-left-right me-2"></i>{% trans "Coincidencias de Conciliación" %}</div>
             <div class="card-body p-0">
                 <div class="table-responsive">
                     <table class="table table-hover mb-0">
                         <thead>
-                            <tr><th>Tipo</th><th>Confianza</th><th>Pago</th><th>Observación</th></tr>
+                            <tr><th>{% trans "Tipo" %}</th><th>{% trans "Confianza" %}</th><th>{% trans "Pago" %}</th><th>{% trans "Observación" %}</th></tr>
                         </thead>
                         <tbody>
                             {% for c in coincidencias %}
@@ -58,7 +62,7 @@
                                 <td class="small">{{ c.observacion|default:"-" }}</td>
                             </tr>
                             {% empty %}
-                            <tr><td colspan="4" class="text-center py-4 text-secondary">Sin coincidencias</td></tr>
+                            <tr><td colspan="4" class="text-center py-4 text-secondary">{% trans "Sin coincidencias" %}</td></tr>
                             {% endfor %}
                         </tbody>
                     </table>

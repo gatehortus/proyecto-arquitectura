@@ -18,6 +18,10 @@ from core.services.pdf_generator import (
     generate_facturas_report, generate_conciliacion_report, generate_proveedores_report
 )
 from core.services.email_service import send_reconciliation_summary
+from core.services.aliados_client import fetch_aliados
+from reportes.services.report_generators import (
+    PDFReportGenerator, ExcelReportGenerator
+)
 
 
 class DashboardView(LoginRequiredMixin, View):
@@ -87,29 +91,60 @@ class ReportsView(LoginRequiredMixin, View):
 
     def post(self, request):
         tipo = request.POST.get('tipo', 'facturas')
-        fecha_desde = request.POST.get('fecha_desde')
-        fecha_hasta = request.POST.get('fecha_hasta')
+        formato = request.POST.get('formato', 'pdf')
+        fecha_desde = request.POST.get('fecha_desde') or None
+        fecha_hasta = request.POST.get('fecha_hasta') or None
 
-        if tipo == 'facturas':
-            qs = Factura.objects.select_related('proveedor').all()
-            if fecha_desde:
-                qs = qs.filter(fecha_emision__gte=fecha_desde)
-            if fecha_hasta:
-                qs = qs.filter(fecha_emision__lte=fecha_hasta)
-            pdf_buffer = generate_facturas_report(qs)
-        elif tipo == 'conciliacion':
+        if tipo == 'conciliacion':
             proceso = ProcesoReconciliacion.objects.order_by('-created_at').first()
             if not proceso:
                 messages.warning(request, _("No hay conciliaciones para reportar."))
                 return redirect('reports')
-            pdf_buffer = generate_conciliacion_report(proceso)
-        else:
-            qs = Proveedor.objects.all()
-            pdf_buffer = generate_proveedores_report(qs)
 
-        response = HttpResponse(pdf_buffer, content_type='application/pdf')
-        filename = _("reporte_%(tipo)s.pdf") % {"tipo": tipo}
+        generator = ExcelReportGenerator() if formato == 'excel' else PDFReportGenerator()
+        contenido, filename, mime = generator.generate({
+            'tipo': tipo,
+            'fecha_desde': fecha_desde,
+            'fecha_hasta': fecha_hasta,
+        })
+
+        response = HttpResponse(contenido, content_type=mime)
         response['Content-Disposition'] = f'attachment; filename="{filename}"'
+        return response
+
+
+class AliadosView(LoginRequiredMixin, View):
+    def get(self, request):
+        data = fetch_aliados()
+        return render(request, 'aliados/list.html', {
+            'aliados': data.get('items', []),
+            'configured': data.get('configured', False),
+            'error': data.get('error'),
+        })
+
+
+class SwitchLanguageView(View):
+    def post(self, request):
+        from django.conf import settings as dj_settings
+        from django.utils.translation import check_for_language
+        lang = request.POST.get('language', dj_settings.LANGUAGE_CODE)
+        if not check_for_language(lang):
+            lang = dj_settings.LANGUAGE_CODE
+        next_path = request.POST.get('next', '/') or '/'
+        codes = [c for c, _n in dj_settings.LANGUAGES]
+        for code in codes:
+            prefix = f'/{code}/'
+            if next_path.startswith(prefix):
+                next_path = '/' + next_path[len(prefix):]
+                break
+            if next_path == f'/{code}':
+                next_path = '/'
+                break
+        if lang != dj_settings.LANGUAGE_CODE:
+            next_path = f'/{lang}{next_path}'
+        response = redirect(next_path)
+        cookie_name = getattr(dj_settings, 'LANGUAGE_COOKIE_NAME', 'django_language')
+        response.set_cookie(cookie_name, lang, max_age=60 * 60 * 24 * 365, path='/')
         return response
 
 

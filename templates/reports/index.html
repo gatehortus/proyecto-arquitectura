@@ -1,37 +1,49 @@
-<!-- Autor: Equipo VeriPay -->
 {% extends "base.html" %}
-{% block title %}Reportes{% endblock %}
+{% load i18n %}
+{% block title %}{% trans "Reportes" %}{% endblock %}
+{% block page_title %}{% trans "Reportes" %}{% endblock %}
 {% block content %}
 <div class="mb-4">
-    <h4 class="fw-bold mb-1">Generación de Reportes</h4>
-    <p class="text-secondary mb-0">Genere reportes en PDF del estado de facturas y conciliaciones</p>
+    <h4 class="fw-bold mb-1">{% trans "Generación de Reportes" %}</h4>
+    <p class="text-secondary mb-0">{% trans "Genere reportes en PDF o Excel del estado de facturas y conciliaciones" %}</p>
 </div>
 <div class="row justify-content-center">
     <div class="col-lg-6">
         <div class="card">
-            <div class="card-header"><i class="bi bi-bar-chart-line me-2"></i>Configurar Reporte</div>
+            <div class="card-header"><i class="bi bi-bar-chart-line me-2"></i>{% trans "Configurar Reporte" %}</div>
             <div class="card-body">
                 <form method="post">
                     {% csrf_token %}
                     <div class="mb-3">
-                        <label class="form-label">Tipo de Reporte</label>
+                        <label class="form-label">{% trans "Tipo de Reporte" %}</label>
                         <select name="tipo" class="form-select" required>
-                            <option value="facturas">Reporte de Facturas</option>
-                            <option value="conciliacion">Reporte de Conciliación</option>
-                            <option value="proveedores">Reporte de Proveedores</option>
+                            <option value="facturas">{% trans "Reporte de Facturas" %}</option>
+                            <option value="conciliacion">{% trans "Reporte de Conciliación" %}</option>
+                            <option value="proveedores">{% trans "Reporte de Proveedores" %}</option>
                         </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label d-block">{% trans "Formato de salida" %}</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="formato" id="formato-pdf" value="pdf" checked>
+                            <label class="form-check-label" for="formato-pdf"><i class="bi bi-file-earmark-pdf me-1"></i>PDF</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="formato" id="formato-excel" value="excel">
+                            <label class="form-check-label" for="formato-excel"><i class="bi bi-file-earmark-excel me-1"></i>Excel</label>
+                        </div>
                     </div>
                     <div class="row g-3 mb-3">
                         <div class="col-md-6">
-                            <label class="form-label">Fecha Desde</label>
-                            <input type="date" name="fecha_desde" class="form-control">
+                            <label class="form-label">{% trans "Fecha Desde" %}</label>
+                            <input type="date" name="fecha_desde" class="form-control" value="{{ request.POST.fecha_desde }}">
                         </div>
                         <div class="col-md-6">
-                            <label class="form-label">Fecha Hasta</label>
-                            <input type="date" name="fecha_hasta" class="form-control">
+                            <label class="form-label">{% trans "Fecha Hasta" %}</label>
+                            <input type="date" name="fecha_hasta" class="form-control" value="{{ request.POST.fecha_hasta }}">
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary w-100"><i class="bi bi-file-earmark-pdf me-1"></i>Generar PDF</button>
+                    <button type="submit" class="btn btn-primary w-100"><i class="bi bi-download me-1"></i>{% trans "Descargar Reporte" %}</button>
                 </form>
             </div>
         </div>

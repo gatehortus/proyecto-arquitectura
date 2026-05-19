@@ -1,44 +1,54 @@
-<!-- Autor: Equipo VeriPay -->
 {% extends "base.html" %}
-{% block title %}Ejecutar Conciliación{% endblock %}
+{% load i18n %}
+{% block title %}{% trans "Ejecutar Conciliación" %}{% endblock %}
+{% block page_title %}{% trans "Nueva Conciliación" %}{% endblock %}
+{% block breadcrumbs %}
+<nav aria-label="breadcrumb" class="mb-3">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">{% trans "Dashboard" %}</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'conciliacion_list' %}">{% trans "Conciliaciones" %}</a></li>
+        <li class="breadcrumb-item active">{% trans "Nueva" %}</li>
+    </ol>
+</nav>
+{% endblock %}
 {% block content %}
 <div class="row justify-content-center">
     <div class="col-lg-6">
         <div class="card">
-            <div class="card-header"><i class="bi bi-play-fill me-2"></i>Nueva Conciliación</div>
+            <div class="card-header"><i class="bi bi-play-fill me-2"></i>{% trans "Nueva Conciliación" %}</div>
             <div class="card-body">
                 <div class="alert alert-info d-flex">
                     <i class="bi bi-info-circle me-2 mt-1"></i>
                     <div>
-                        <strong>¿Qué hace la conciliación?</strong><br>
-                        Compara todas las facturas pendientes contra los registros de pago y certificados bancarios, asignando un porcentaje de confianza a cada coincidencia.
+                        <strong>{% trans "¿Qué hace la conciliación?" %}</strong><br>
+                        {% trans "Compara todas las facturas pendientes contra los registros de pago y certificados bancarios, asignando un porcentaje de confianza a cada coincidencia." %}
                     </div>
                 </div>
                 <form method="post">
                     {% csrf_token %}
                     <div class="mb-3">
-                        <label for="tolerancia" class="form-label">Tolerancia de monto (%)</label>
-                        <input type="number" name="tolerancia" id="tolerancia" class="form-control" value="5" min="0" max="100" step="1">
-                        <div class="form-text">Porcentaje de diferencia permitido entre el monto de la factura y el pago.</div>
+                        <label for="tolerancia" class="form-label">{% trans "Tolerancia de monto (%)" %}</label>
+                        <input type="number" name="tolerancia" id="tolerancia" class="form-control" value="{{ request.POST.tolerancia|default:'5' }}" min="0" max="100" step="1">
+                        <div class="form-text">{% trans "Porcentaje de diferencia permitido entre el monto de la factura y el pago." %}</div>
                     </div>
                     <div class="mb-4 p-3 bg-light rounded">
                         <div class="row text-center">
                             <div class="col-4">
                                 <h5 class="fw-bold text-primary">{{ facturas_pendientes }}</h5>
-                                <small class="text-secondary">Facturas pendientes</small>
+                                <small class="text-secondary">{% trans "Facturas pendientes" %}</small>
                             </div>
                             <div class="col-4">
                                 <h5 class="fw-bold text-primary">{{ registros_pago }}</h5>
-                                <small class="text-secondary">Registros de pago</small>
+                                <small class="text-secondary">{% trans "Registros de pago" %}</small>
                             </div>
                             <div class="col-4">
                                 <h5 class="fw-bold text-primary">{{ certificados }}</h5>
-                                <small class="text-secondary">Certificados</small>
+                                <small class="text-secondary">{% trans "Certificados" %}</small>
                             </div>
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary w-100 py-2">
-                        <i class="bi bi-play-fill me-1"></i>Ejecutar Conciliación
+                        <i class="bi bi-play-fill me-1"></i>{% trans "Ejecutar Conciliación" %}
                     </button>
                 </form>
             </div>

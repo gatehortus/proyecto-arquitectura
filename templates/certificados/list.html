@@ -1,24 +1,33 @@
-<!-- Autor: Equipo VeriPay -->
 {% extends "base.html" %}
-{% block title %}Certificados Bancarios{% endblock %}
+{% load i18n %}
+{% block title %}{% trans "Certificados Bancarios" %}{% endblock %}
+{% block page_title %}{% trans "Certificados" %}{% endblock %}
+{% block breadcrumbs %}
+<nav aria-label="breadcrumb" class="mb-3">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">{% trans "Dashboard" %}</a></li>
+        <li class="breadcrumb-item active">{% trans "Certificados" %}</li>
+    </ol>
+</nav>
+{% endblock %}
 {% block content %}
 <div class="d-flex justify-content-between align-items-center mb-4">
     <div>
-        <h4 class="fw-bold mb-1">Certificados Bancarios</h4>
-        <p class="text-secondary mb-0">Comprobantes de pago bancarios</p>
+        <h4 class="fw-bold mb-1">{% trans "Certificados Bancarios" %}</h4>
+        <p class="text-secondary mb-0">{% trans "Comprobantes de pago bancarios" %}</p>
     </div>
     {% if user.is_staff %}
-    <a href="{% url 'certificado_create' %}" class="btn btn-primary"><i class="bi bi-plus-lg me-1"></i>Nuevo Certificado</a>
+    <a href="{% url 'certificado_create' %}" class="btn btn-primary"><i class="bi bi-plus-lg me-1"></i>{% trans "Nuevo Certificado" %}</a>
     {% endif %}
 </div>
 <div class="card mb-3">
     <div class="card-body py-3">
         <form method="get" class="row g-2 align-items-end">
             <div class="col-md-3">
-                <input type="text" name="q" class="form-control" placeholder="Buscar por número o banco..." value="{{ request.GET.q }}">
+                <input type="text" name="q" class="form-control" placeholder="{% trans 'Buscar por número o banco...' %}" value="{{ request.GET.q }}">
             </div>
             <div class="col-auto">
-                <button type="submit" class="btn btn-primary"><i class="bi bi-search me-1"></i>Buscar</button>
+                <button type="submit" class="btn btn-primary"><i class="bi bi-search me-1"></i>{% trans "Buscar" %}</button>
             </div>
         </form>
     </div>
@@ -28,7 +37,7 @@
         <div class="table-responsive">
             <table class="table table-hover">
                 <thead>
-                    <tr><th>Número</th><th>Banco</th><th>Cuenta</th><th>Monto</th><th>Fecha Pago</th><th>Verificado</th><th>Acciones</th></tr>
+                    <tr><th>{% trans "Número" %}</th><th>{% trans "Banco" %}</th><th>{% trans "Cuenta" %}</th><th>{% trans "Monto" %}</th><th>{% trans "Fecha Pago" %}</th><th>{% trans "Verificado" %}</th><th>{% trans "Acciones" %}</th></tr>
                 </thead>
                 <tbody>
                     {% for c in object_list %}
@@ -40,9 +49,9 @@
                         <td>{{ c.fecha_pago|date:"d/m/Y" }}</td>
                         <td>
                             {% if c.autenticidad_verificada %}
-                            <span class="status-badge badge-pagada"><i class="bi bi-check-circle me-1"></i>Sí</span>
+                            <span class="status-badge badge-pagada"><i class="bi bi-check-circle me-1"></i>{% trans "Sí" %}</span>
                             {% else %}
-                            <span class="status-badge badge-pendiente"><i class="bi bi-x-circle me-1"></i>No</span>
+                            <span class="status-badge badge-pendiente"><i class="bi bi-x-circle me-1"></i>{% trans "No" %}</span>
                             {% endif %}
                         </td>
                         <td>
@@ -53,7 +62,7 @@
                         </td>
                     </tr>
                     {% empty %}
-                    <tr><td colspan="7" class="text-center py-5 text-secondary"><i class="bi bi-patch-check fs-1 d-block mb-2"></i>No hay certificados</td></tr>
+                    <tr><td colspan="7" class="text-center py-5 text-secondary"><i class="bi bi-patch-check fs-1 d-block mb-2"></i>{% trans "No hay certificados" %}</td></tr>
                     {% endfor %}
                 </tbody>
             </table>

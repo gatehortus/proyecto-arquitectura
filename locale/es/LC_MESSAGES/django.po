@@ -1,197 +1,763 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: VeriPay 2.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-19 07:14-0500\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"POT-Creation-Date: 2026-05-19 00:00+0000\n"
+"PO-Revision-Date: 2026-05-19 00:00+0000\n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? "
-"1 : 2;\n"
-#: .\certificados\views.py:43
-msgid "Nuevo Certificado Bancario"
-msgstr "Nuevo Certificado Bancario"
 
-#: .\certificados\views.py:47
-msgid "Certificado creado exitosamente."
-msgstr "Certificado creado exitosamente."
+msgid "A continuación encontrará el resumen del estado de sus pagos:"
+msgstr "A continuación encontrará el resumen del estado de sus pagos:"
 
-#: .\certificados\views.py:62 .\facturas\views.py:82
-#, python-format
-msgid "Editar: %(numero)s"
-msgstr "Editar: %(numero)s"
+msgid "Acciones"
+msgstr "Acciones"
 
-#: .\certificados\views.py:68
-msgid "Certificado actualizado."
-msgstr "Certificado actualizado."
+msgid "Activo"
+msgstr "Activo"
 
-#: .\conciliacion\services.py:47
-msgid "Conciliación usando archivo de pagos"
-msgstr "Conciliación usando archivo de pagos"
+msgid "Activos"
+msgstr "Activos"
 
-#: .\conciliacion\services.py:91
-msgid "Referencia encontrada en pagos"
-msgstr "Referencia encontrada en pagos"
+msgid "Administración"
+msgstr "Administración"
 
-#: .\conciliacion\services.py:98
-msgid "Monto dentro de tolerancia"
-msgstr "Monto dentro de tolerancia"
+msgid "Administradores"
+msgstr "Administradores"
 
-#: .\conciliacion\services.py:102
-#, python-format
-msgid "Pago parcial: $%(monto)s"
-msgstr "Pago parcial: $%(monto)s"
+msgid "Aliados"
+msgstr "Aliados"
 
-#: .\conciliacion\services.py:113
-#, python-format
-msgid "Monto similar encontrado: $%(monto)s"
-msgstr "Monto similar encontrado: $%(monto)s"
+msgid "Archivo"
+msgstr "Archivo"
 
-#: .\conciliacion\services.py:126
-#, python-format
-msgid "Certificado: %(numero)s"
-msgstr "Certificado: %(numero)s"
-
-#: .\conciliacion\services.py:132
-msgid "Certificado verificado"
-msgstr "Certificado verificado"
-
-#: .\conciliacion\services.py:152
-msgid "Sin coincidencias encontradas"
-msgstr "Sin coincidencias encontradas"
-
-#: .\conciliacion\views.py:58
-#, python-format
-msgid ""
-"Conciliación finalizada: %(conciliadas)s/%(total)s facturas conciliadas."
-msgstr ""
-"Conciliación finalizada: %(conciliadas)s/%(total)s facturas conciliadas."
-
-#: .\conciliacion\views.py:71
-#, python-format
-msgid "conciliacion_%(id)s.pdf"
-msgstr "conciliacion_%(id)s.pdf"
-
-#: .\core\admin_panel\views.py:51 .\core\admin_panel\views.py:63
-msgid "Crear Usuario"
-msgstr "Crear Usuario"
-
-#: .\core\admin_panel\views.py:60
-msgid "Usuario creado exitosamente."
-msgstr "Usuario creado exitosamente."
-
-#: .\core\admin_panel\views.py:73 .\core\admin_panel\views.py:87
-#, python-format
-msgid "Editar Usuario: %(username)s"
-msgstr "Editar Usuario: %(username)s"
-
-#: .\core\admin_panel\views.py:83
-msgid "Usuario actualizado."
-msgstr "Usuario actualizado."
-
-#: .\core\views.py:103
-msgid "No hay conciliaciones para reportar."
-msgstr "No hay conciliaciones para reportar."
-
-#: .\core\views.py:111
-#, python-format
-msgid "reporte_%(tipo)s.pdf"
-msgstr "reporte_%(tipo)s.pdf"
-
-#: .\core\views.py:126
-msgid "Debe ingresar al menos un correo destinatario."
-msgstr "Debe ingresar al menos un correo destinatario."
-
-#: .\core\views.py:146
-#, python-format
-msgid "Resumen enviado a %(destinatarios)s"
-msgstr "Resumen enviado a %(destinatarios)s"
-
-#: .\core\views.py:153
-msgid ""
-"El correo se configuró pero no se pudo enviar (verifique configuración SMTP)."
-msgstr ""
-"El correo se configuró pero no se pudo enviar (verifique configuración SMTP)."
-
-#: .\facturas\views.py:63
-msgid "Nueva Factura"
-msgstr "Nueva Factura"
-
-#: .\facturas\views.py:67
-msgid "Factura creada exitosamente."
-msgstr "Factura creada exitosamente."
-
-#: .\facturas\views.py:86
-msgid "Factura actualizada."
-msgstr "Factura actualizada."
-
-#: .\facturas\views.py:124
-msgid "Factura creada desde OCR exitosamente."
-msgstr "Factura creada desde OCR exitosamente."
-
-#: .\pagos\views.py:39
-#, python-format
 msgid "Archivo cargado y procesado: %(total)s registros."
 msgstr "Archivo cargado y procesado: %(total)s registros."
 
-#: .\pagos\views.py:57
-#, python-format
 msgid "Archivo procesado: %(total)s registros."
 msgstr "Archivo procesado: %(total)s registros."
 
-#: .\proveedores\views.py:63
-msgid "Nuevo Proveedor"
-msgstr "Nuevo Proveedor"
+msgid "Archivos de Pagos"
+msgstr "Archivos de Pagos"
 
-#: .\proveedores\views.py:67
-msgid "Proveedor creado exitosamente."
-msgstr "Proveedor creado exitosamente."
+msgid "Arrastre una imagen aquí o haga clic para seleccionar"
+msgstr "Arrastre una imagen aquí o haga clic para seleccionar"
 
-#: .\proveedores\views.py:82
-#, python-format
+msgid "Banco"
+msgstr "Banco"
+
+msgid "Bienvenido a VeriPay"
+msgstr "Bienvenido a VeriPay"
+
+msgid "Buscar"
+msgstr "Buscar"
+
+msgid "Buscar número factura..."
+msgstr "Buscar número factura..."
+
+msgid "Buscar por nombre o NIT..."
+msgstr "Buscar por nombre o NIT..."
+
+msgid "Buscar por número o banco..."
+msgstr "Buscar por número o banco..."
+
+msgid "Cambiar tema"
+msgstr "Cambiar tema"
+
+msgid "Cancelar"
+msgstr "Cancelar"
+
+msgid "Carga y procesamiento de archivos bancarios"
+msgstr "Carga y procesamiento de archivos bancarios"
+
+msgid "Cargar Archivo"
+msgstr "Cargar Archivo"
+
+msgid "Cargar Archivo de Pagos"
+msgstr "Cargar Archivo de Pagos"
+
+msgid "Cargar con OCR"
+msgstr "Cargar con OCR"
+
+msgid "Cargar y Procesar"
+msgstr "Cargar y Procesar"
+
+msgid "Cargue una imagen o PDF de factura para extraer datos automáticamente"
+msgstr "Cargue una imagen o PDF de factura para extraer datos automáticamente"
+
+msgid "Catálogo del equipo aliado"
+msgstr "Catálogo del equipo aliado"
+
+msgid "Cerrar sesión"
+msgstr "Cerrar sesión"
+
+msgid "Certificado"
+msgstr "Certificado"
+
+msgid "Certificado Bancario"
+msgstr "Certificado Bancario"
+
+msgid "Certificado actualizado."
+msgstr "Certificado actualizado."
+
+msgid "Certificado creado exitosamente."
+msgstr "Certificado creado exitosamente."
+
+msgid "Certificado verificado"
+msgstr "Certificado verificado"
+
+msgid "Certificado: %(numero)s"
+msgstr "Certificado: %(numero)s"
+
+msgid "Certificados"
+msgstr "Certificados"
+
+msgid "Certificados Bancarios"
+msgstr "Certificados Bancarios"
+
+msgid "Coincidencias"
+msgstr "Coincidencias"
+
+msgid "Coincidencias de Conciliación"
+msgstr "Coincidencias de Conciliación"
+
+msgid ""
+"Compara todas las facturas pendientes contra los registros de pago y "
+"certificados bancarios, asignando un porcentaje de confianza a cada "
+"coincidencia."
+msgstr ""
+"Compara todas las facturas pendientes contra los registros de pago y "
+"certificados bancarios, asignando un porcentaje de confianza a cada "
+"coincidencia."
+
+msgid "Comprobantes de pago bancarios"
+msgstr "Comprobantes de pago bancarios"
+
+msgid "Concepto"
+msgstr "Concepto"
+
+msgid "Concilia facturas, pagos y certificados bancarios de forma automática."
+msgstr ""
+"Concilia facturas, pagos y certificados bancarios de forma automática."
+
+msgid "Conciliaciones"
+msgstr "Conciliaciones"
+
+msgid "Conciliación"
+msgstr "Conciliación"
+
+msgid "Conciliación - Detalle"
+msgstr "Conciliación - Detalle"
+
+msgid ""
+"Conciliación finalizada: %(conciliadas)s/%(total)s facturas conciliadas."
+msgstr ""
+"Conciliación finalizada: %(conciliadas)s/%(total)s facturas conciliadas."
+
+msgid "Conciliación usando archivo de pagos"
+msgstr "Conciliación usando archivo de pagos"
+
+msgid "Conciliadas"
+msgstr "Conciliadas"
+
+msgid "Confianza"
+msgstr "Confianza"
+
+msgid "Confianza %"
+msgstr "Confianza %"
+
+msgid "Configurar Reporte"
+msgstr "Configurar Reporte"
+
+msgid "Consultado"
+msgstr "Consultado"
+
+msgid "Contraseña"
+msgstr "Contraseña"
+
+msgid "Correo(s) destinatario(s)"
+msgstr "Correo(s) destinatario(s)"
+
+msgid "Crear Factura"
+msgstr "Crear Factura"
+
+msgid "Crear Usuario"
+msgstr "Crear Usuario"
+
+msgid "Cuenta"
+msgstr "Cuenta"
+
+msgid "Cuenta Origen"
+msgstr "Cuenta Origen"
+
+msgid "Dashboard"
+msgstr "Dashboard"
+
+msgid "Datos Extraídos — Verifique y Confirme"
+msgstr "Datos Extraídos — Verifique y Confirme"
+
+msgid "Debe ingresar al menos un correo destinatario."
+msgstr "Debe ingresar al menos un correo destinatario."
+
+msgid "Descargar Reporte"
+msgstr "Descargar Reporte"
+
+msgid "Detalle"
+msgstr "Detalle"
+
+msgid "Detalle de Conciliación"
+msgstr "Detalle de Conciliación"
+
+msgid "Detalle de Factura"
+msgstr "Detalle de Factura"
+
+msgid "Editar"
+msgstr "Editar"
+
+msgid "Editar Usuario: %(username)s"
+msgstr "Editar Usuario: %(username)s"
+
 msgid "Editar: %(nombre)s"
 msgstr "Editar: %(nombre)s"
 
-#: .\proveedores\views.py:86
+msgid "Editar: %(numero)s"
+msgstr "Editar: %(numero)s"
+
+msgid "Ejecutar Conciliación"
+msgstr "Ejecutar Conciliación"
+
+msgid ""
+"El correo se configuró pero no se pudo enviar (verifique configuración "
+"SMTP)."
+msgstr ""
+"El correo se configuró pero no se pudo enviar (verifique configuración "
+"SMTP)."
+
+msgid "El servicio respondió pero no devolvió elementos."
+msgstr "El servicio respondió pero no devolvió elementos."
+
+msgid "Eliminar"
+msgstr "Eliminar"
+
+msgid "Email"
+msgstr "Email"
+
+msgid "English"
+msgstr "English"
+
+msgid "Enviar Resumen"
+msgstr "Enviar Resumen"
+
+msgid "Enviar Resumen por Correo"
+msgstr "Enviar Resumen por Correo"
+
+msgid "Envíe un resumen del estado de pagos a los proveedores"
+msgstr "Envíe un resumen del estado de pagos a los proveedores"
+
+msgid "Error al consumir el servicio:"
+msgstr "Error al consumir el servicio:"
+
+msgid "Español"
+msgstr "Español"
+
+msgid "Estado"
+msgstr "Estado"
+
+msgid "Este es un correo generado automáticamente por VeriPay."
+msgstr "Este es un correo generado automáticamente por VeriPay."
+
+msgid "Estimado proveedor,"
+msgstr "Estimado proveedor,"
+
+msgid "Exportar PDF"
+msgstr "Exportar PDF"
+
+msgid "Externos"
+msgstr "Externos"
+
+msgid "Factura"
+msgstr "Factura"
+
+msgid "Factura actualizada."
+msgstr "Factura actualizada."
+
+msgid "Factura creada desde OCR exitosamente."
+msgstr "Factura creada desde OCR exitosamente."
+
+msgid "Factura creada exitosamente."
+msgstr "Factura creada exitosamente."
+
+msgid "Facturas"
+msgstr "Facturas"
+
+msgid "Facturas Pendientes"
+msgstr "Facturas Pendientes"
+
+msgid "Facturas del proveedor"
+msgstr "Facturas del proveedor"
+
+msgid "Facturas pendientes"
+msgstr "Facturas pendientes"
+
+msgid "Facturas por Estado"
+msgstr "Facturas por Estado"
+
+msgid "Fecha"
+msgstr "Fecha"
+
+msgid "Fecha Desde"
+msgstr "Fecha Desde"
+
+msgid "Fecha Emisión"
+msgstr "Fecha Emisión"
+
+msgid "Fecha Hasta"
+msgstr "Fecha Hasta"
+
+msgid "Fecha Pago"
+msgstr "Fecha Pago"
+
+msgid "Fecha Vencimiento"
+msgstr "Fecha Vencimiento"
+
+msgid "Fecha emisión"
+msgstr "Fecha emisión"
+
+msgid "Filtrar"
+msgstr "Filtrar"
+
+msgid "Formato"
+msgstr "Formato"
+
+msgid "Formato de salida"
+msgstr "Formato de salida"
+
+msgid "Formatos: JPG, PNG, PDF — Máximo 10MB"
+msgstr "Formatos: JPG, PNG, PDF — Máximo 10MB"
+
+msgid "Generación de Reportes"
+msgstr "Generación de Reportes"
+
+msgid "Genere reportes en PDF o Excel del estado de facturas y conciliaciones"
+msgstr ""
+"Genere reportes en PDF o Excel del estado de facturas y conciliaciones"
+
+msgid "Gestión"
+msgstr "Gestión"
+
+msgid "Gestión de facturas de proveedores"
+msgstr "Gestión de facturas de proveedores"
+
+msgid "Gestión de proveedores del sistema"
+msgstr "Gestión de proveedores del sistema"
+
+msgid "Gestión de usuarios y configuración del sistema"
+msgstr "Gestión de usuarios y configuración del sistema"
+
+msgid "Guardar"
+msgstr "Guardar"
+
+msgid "Historial de procesos de conciliación ejecutados"
+msgstr "Historial de procesos de conciliación ejecutados"
+
+msgid "ID"
+msgstr "ID"
+
+msgid "Idioma"
+msgstr "Idioma"
+
+msgid "Inactivo"
+msgstr "Inactivo"
+
+msgid "Incluir en el resumen"
+msgstr "Incluir en el resumen"
+
+msgid "Indicadores y actividad reciente del sistema"
+msgstr "Indicadores y actividad reciente del sistema"
+
+msgid ""
+"Información consumida en tiempo real desde el servicio JSON expuesto por el "
+"equipo precedente."
+msgstr ""
+"Información consumida en tiempo real desde el servicio JSON expuesto por el "
+"equipo precedente."
+
+msgid "Ingrese su contraseña"
+msgstr "Ingrese su contraseña"
+
+msgid "Ingrese su usuario"
+msgstr "Ingrese su usuario"
+
+msgid "Iniciar Sesión"
+msgstr "Iniciar Sesión"
+
+msgid "Intentar de nuevo"
+msgstr "Intentar de nuevo"
+
+msgid "Limpiar"
+msgstr "Limpiar"
+
+msgid "Monto"
+msgstr "Monto"
+
+msgid "Monto Pagado"
+msgstr "Monto Pagado"
+
+msgid "Monto Pendiente"
+msgstr "Monto Pendiente"
+
+msgid "Monto Total"
+msgstr "Monto Total"
+
+msgid "Monto dentro de tolerancia"
+msgstr "Monto dentro de tolerancia"
+
+msgid "Monto similar encontrado: $%(monto)s"
+msgstr "Monto similar encontrado: $%(monto)s"
+
+msgid "NIT"
+msgstr "NIT"
+
+msgid "No"
+msgstr "No"
+
+msgid "No Encontrada"
+msgstr "No Encontrada"
+
+msgid "No hay archivos de pagos"
+msgstr "No hay archivos de pagos"
+
+msgid "No hay certificados"
+msgstr "No hay certificados"
+
+msgid "No hay conciliaciones ejecutadas"
+msgstr "No hay conciliaciones ejecutadas"
+
+msgid "No hay conciliaciones para reportar."
+msgstr "No hay conciliaciones para reportar."
+
+msgid "No hay facturas registradas"
+msgstr "No hay facturas registradas"
+
+msgid "No hay proveedores registrados"
+msgstr "No hay proveedores registrados"
+
+msgid "No registrado"
+msgstr "No registrado"
+
+msgid "Nombre"
+msgstr "Nombre"
+
+msgid "Nueva"
+msgstr "Nueva"
+
+msgid "Nueva Conciliación"
+msgstr "Nueva Conciliación"
+
+msgid "Nueva Factura"
+msgstr "Nueva Factura"
+
+msgid "Nuevo Certificado"
+msgstr "Nuevo Certificado"
+
+msgid "Nuevo Certificado Bancario"
+msgstr "Nuevo Certificado Bancario"
+
+msgid "Nuevo Proveedor"
+msgstr "Nuevo Proveedor"
+
+msgid "Nuevo Usuario"
+msgstr "Nuevo Usuario"
+
+msgid "Nunca"
+msgstr "Nunca"
+
+msgid "Número"
+msgstr "Número"
+
+msgid "OCR"
+msgstr "OCR"
+
+msgid "OCR - Cargar Factura"
+msgstr "OCR - Cargar Factura"
+
+msgid "OCR - Lectura de Facturas"
+msgstr "OCR - Lectura de Facturas"
+
+msgid "OCR - Resultado"
+msgstr "OCR - Resultado"
+
+msgid "OCR Facturas"
+msgstr "OCR Facturas"
+
+msgid "Observación"
+msgstr "Observación"
+
+msgid "Pagada"
+msgstr "Pagada"
+
+msgid "Pago"
+msgstr "Pago"
+
+msgid "Pago Ref."
+msgstr "Pago Ref."
+
+msgid "Pago parcial: $%(monto)s"
+msgstr "Pago parcial: $%(monto)s"
+
+msgid "Pagos"
+msgstr "Pagos"
+
+msgid "Pagos Recientes"
+msgstr "Pagos Recientes"
+
+msgid "Pagos recientes"
+msgstr "Pagos recientes"
+
+msgid "Panel Admin"
+msgstr "Panel Admin"
+
+msgid "Panel de Administración"
+msgstr "Panel de Administración"
+
+msgid "Parcial"
+msgstr "Parcial"
+
+msgid "Pendiente"
+msgstr "Pendiente"
+
+msgid "Pendientes"
+msgstr "Pendientes"
+
+msgid ""
+"Porcentaje de diferencia permitido entre el monto de la factura y el pago."
+msgstr ""
+"Porcentaje de diferencia permitido entre el monto de la factura y el pago."
+
+msgid "Principal"
+msgstr "Principal"
+
+msgid "Procesado"
+msgstr "Procesado"
+
+msgid "Procesar"
+msgstr "Procesar"
+
+msgid "Procesar con OCR"
+msgstr "Procesar con OCR"
+
+msgid "Procesos"
+msgstr "Procesos"
+
+msgid "Procesos de Conciliación"
+msgstr "Procesos de Conciliación"
+
+msgid "Productos / Servicios de Aliados"
+msgstr "Productos / Servicios de Aliados"
+
+msgid "Proveedor"
+msgstr "Proveedor"
+
+msgid "Proveedor (opcional)"
+msgstr "Proveedor (opcional)"
+
 msgid "Proveedor actualizado."
 msgstr "Proveedor actualizado."
 
-#: .\proveedores\views.py:98
+msgid "Proveedor creado exitosamente."
+msgstr "Proveedor creado exitosamente."
+
 msgid "Proveedor eliminado."
 msgstr "Proveedor eliminado."
 
-#: .\reportes\services\report_generators.py:16
-msgid "report.pdf"
-msgstr "report.pdf"
+msgid "Proveedores"
+msgstr "Proveedores"
 
-#: .\reportes\services\report_generators.py:17
-#, python-format
-msgid "Reporte PDF generado con %(total)s registros."
-msgstr "Reporte PDF generado con %(total)s registros."
+msgid "Rechazada"
+msgstr "Rechazada"
 
-#: .\reportes\services\report_generators.py:28
-msgid "report.xlsx"
-msgstr "report.xlsx"
+msgid "Referencia"
+msgstr "Referencia"
 
-#: .\reportes\services\report_generators.py:29
-#, python-format
-msgid "Reporte Excel generado con %(total)s registros."
-msgstr "Reporte Excel generado con %(total)s registros."
+msgid "Referencia encontrada en pagos"
+msgstr "Referencia encontrada en pagos"
 
-#: .\reportes\views.py:21
-msgid "Proveedor Demo"
-msgstr "Proveedor Demo"
+msgid "Registrado"
+msgstr "Registrado"
 
-#: .\reportes\views.py:22
-msgid "Factura Demo"
-msgstr "Factura Demo"
+msgid "Registros"
+msgstr "Registros"
+
+msgid "Registros de Pago"
+msgstr "Registros de Pago"
+
+msgid "Registros de pago"
+msgstr "Registros de pago"
+
+msgid "Registros del archivo"
+msgstr "Registros del archivo"
+
+msgid "Reporte de Conciliación"
+msgstr "Reporte de Conciliación"
+
+msgid "Reporte de Facturas"
+msgstr "Reporte de Facturas"
+
+msgid "Reporte de Proveedores"
+msgstr "Reporte de Proveedores"
+
+msgid "Reportes"
+msgstr "Reportes"
+
+msgid "Resultado"
+msgstr "Resultado"
+
+msgid "Resultado OCR"
+msgstr "Resultado OCR"
+
+msgid "Resumen de Estado de Pagos"
+msgstr "Resumen de Estado de Pagos"
+
+msgid "Resumen enviado a %(destinatarios)s"
+msgstr "Resumen enviado a %(destinatarios)s"
+
+msgid "Resumen general"
+msgstr "Resumen general"
+
+msgid "Separe múltiples correos con comas"
+msgstr "Separe múltiples correos con comas"
+
+msgid "Servicio no configurado."
+msgstr "Servicio no configurado."
+
+msgid "Sin archivo"
+msgstr "Sin archivo"
+
+msgid "Sin coincidencias"
+msgstr "Sin coincidencias"
+
+msgid "Sin coincidencias encontradas"
+msgstr "Sin coincidencias encontradas"
+
+msgid "Sin conciliaciones"
+msgstr "Sin conciliaciones"
+
+msgid "Sin facturas"
+msgstr "Sin facturas"
+
+msgid "Sin facturas registradas"
+msgstr "Sin facturas registradas"
+
+msgid "Sin registros"
+msgstr "Sin registros"
+
+msgid "Sistema de Conciliación"
+msgstr "Sistema de Conciliación"
+
+msgid "Sistema de Conciliación de Pagos"
+msgstr "Sistema de Conciliación de Pagos"
+
+msgid "Staff"
+msgstr "Staff"
+
+msgid "Sí"
+msgstr "Sí"
+
+msgid "TRM"
+msgstr "TRM"
+
+msgid "Tasa de cambio oficial de la Superfinanciera de Colombia"
+msgstr "Tasa de cambio oficial de la Superfinanciera de Colombia"
+
+msgid "Teléfono"
+msgstr "Teléfono"
+
+msgid "Texto Extraído (OCR)"
+msgstr "Texto Extraído (OCR)"
+
+msgid "Tipo"
+msgstr "Tipo"
+
+msgid "Tipo de Reporte"
+msgstr "Tipo de Reporte"
+
+msgid "Todos los estados"
+msgstr "Todos los estados"
+
+msgid "Todos los proveedores"
+msgstr "Todos los proveedores"
+
+msgid "Tolerancia"
+msgstr "Tolerancia"
+
+msgid "Tolerancia de monto (%)"
+msgstr "Tolerancia de monto (%)"
+
+msgid "Total"
+msgstr "Total"
+
+msgid "Total Facturas"
+msgstr "Total Facturas"
+
+msgid "UUID Fiscal"
+msgstr "UUID Fiscal"
+
+msgid "Usuario"
+msgstr "Usuario"
+
+msgid "Usuario actualizado."
+msgstr "Usuario actualizado."
+
+msgid "Usuario creado exitosamente."
+msgstr "Usuario creado exitosamente."
+
+msgid "Usuario o contraseña incorrectos."
+msgstr "Usuario o contraseña incorrectos."
+
+msgid "Usuarios"
+msgstr "Usuarios"
+
+msgid "Usuarios del Sistema"
+msgstr "Usuarios del Sistema"
+
+msgid "Ver"
+msgstr "Ver"
+
+msgid "Ver registros"
+msgstr "Ver registros"
+
+msgid "Ver todas"
+msgstr "Ver todas"
+
+msgid "Verificado"
+msgstr "Verificado"
+
+msgid "conciliacion_%(id)s.pdf"
+msgstr "conciliacion_%(id)s.pdf"
+
+msgid "reporte_%(tipo)s.pdf"
+msgstr "reporte_%(tipo)s.pdf"
+
+msgid "reporte_%(tipo)s.xlsx"
+msgstr "reporte_%(tipo)s.xlsx"
+
+msgid "¿Qué hace la conciliación?"
+msgstr "¿Qué hace la conciliación?"
+
+msgid "Última Conciliación"
+msgstr "Última Conciliación"
+
+msgid "Última conciliación"
+msgstr "Última conciliación"
+
+msgid "Últimas Conciliaciones"
+msgstr "Últimas Conciliaciones"
+
+msgid "Últimas Facturas"
+msgstr "Últimas Facturas"
+
+msgid "Último acceso"
+msgstr "Último acceso"

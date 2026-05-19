@@ -1,17 +1,21 @@
-<!-- Autor: Equipo VeriPay -->
 {% extends "base.html" %}
-{% block title %}Cargar Archivo de Pagos{% endblock %}
-{% block content %}
+{% load i18n %}
+{% block title %}{% trans "Cargar Archivo de Pagos" %}{% endblock %}
+{% block page_title %}{% trans "Cargar Archivo" %}{% endblock %}
+{% block breadcrumbs %}
 <nav aria-label="breadcrumb" class="mb-3">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="{% url 'pagos_list' %}">Pagos</a></li>
-        <li class="breadcrumb-item active">Cargar Archivo</li>
+        <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">{% trans "Dashboard" %}</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'pagos_list' %}">{% trans "Pagos" %}</a></li>
+        <li class="breadcrumb-item active">{% trans "Cargar Archivo" %}</li>
     </ol>
 </nav>
+{% endblock %}
+{% block content %}
 <div class="row justify-content-center">
     <div class="col-lg-6">
         <div class="card">
-            <div class="card-header"><i class="bi bi-cloud-arrow-up me-2"></i>Cargar Archivo de Pagos</div>
+            <div class="card-header"><i class="bi bi-cloud-arrow-up me-2"></i>{% trans "Cargar Archivo de Pagos" %}</div>
             <div class="card-body">
                 <form method="post" enctype="multipart/form-data">
                     {% csrf_token %}
@@ -23,7 +27,7 @@
                         {% if field.errors %}<div class="text-danger small mt-1">{{ field.errors.0 }}</div>{% endif %}
                     </div>
                     {% endfor %}
-                    <button type="submit" class="btn btn-primary w-100"><i class="bi bi-cloud-arrow-up me-1"></i>Cargar y Procesar</button>
+                    <button type="submit" class="btn btn-primary w-100"><i class="bi bi-cloud-arrow-up me-1"></i>{% trans "Cargar y Procesar" %}</button>
                 </form>
             </div>
         </div>

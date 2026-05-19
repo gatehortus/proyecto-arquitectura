@@ -1,20 +1,22 @@
-<!-- Autor: Equipo VeriPay -->
 {% extends "base.html" %}
-{% block title %}Conciliación - Detalle{% endblock %}
-{% block content %}
+{% load i18n %}
+{% block title %}{% trans "Conciliación - Detalle" %}{% endblock %}
+{% block page_title %}{% trans "Detalle de Conciliación" %}{% endblock %}
+{% block breadcrumbs %}
 <nav aria-label="breadcrumb" class="mb-3">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="{% url 'conciliacion_list' %}">Conciliaciones</a></li>
-        <li class="breadcrumb-item active">Detalle</li>
+        <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">{% trans "Dashboard" %}</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'conciliacion_list' %}">{% trans "Conciliaciones" %}</a></li>
+        <li class="breadcrumb-item active">{% trans "Detalle" %}</li>
     </ol>
 </nav>
-
-<!-- Summary Cards -->
+{% endblock %}
+{% block content %}
 <div class="row g-3 mb-4">
     <div class="col-md-3">
         <div class="card kpi-card">
             <div class="card-body text-center">
-                <p class="kpi-label mb-1">Total Facturas</p>
+                <p class="kpi-label mb-1">{% trans "Total Facturas" %}</p>
                 <h3 class="kpi-value">{{ proceso.total_facturas }}</h3>
             </div>
         </div>
@@ -22,7 +24,7 @@
     <div class="col-md-3">
         <div class="card kpi-card">
             <div class="card-body text-center">
-                <p class="kpi-label mb-1">Conciliadas</p>
+                <p class="kpi-label mb-1">{% trans "Conciliadas" %}</p>
                 <h3 class="kpi-value text-success">{{ proceso.facturas_conciliadas }}</h3>
             </div>
         </div>
@@ -30,7 +32,7 @@
     <div class="col-md-3">
         <div class="card kpi-card">
             <div class="card-body text-center">
-                <p class="kpi-label mb-1">Pendientes</p>
+                <p class="kpi-label mb-1">{% trans "Pendientes" %}</p>
                 <h3 class="kpi-value text-warning">{{ proceso.facturas_pendientes }}</h3>
             </div>
         </div>
@@ -38,7 +40,7 @@
     <div class="col-md-3">
         <div class="card kpi-card">
             <div class="card-body text-center">
-                <p class="kpi-label mb-1">Estado</p>
+                <p class="kpi-label mb-1">{% trans "Estado" %}</p>
                 <span class="status-badge badge-{{ proceso.estado|lower }}" style="font-size:0.9rem;">{{ proceso.get_estado_display }}</span>
             </div>
         </div>
@@ -46,8 +48,8 @@
 </div>
 
 <div class="d-flex justify-content-between align-items-center mb-3">
-    <h5 class="fw-bold mb-0">Coincidencias</h5>
-    <a href="{% url 'conciliacion_pdf' proceso.id %}" class="btn btn-outline-danger btn-sm"><i class="bi bi-file-earmark-pdf me-1"></i>Exportar PDF</a>
+    <h5 class="fw-bold mb-0">{% trans "Coincidencias" %}</h5>
+    <a href="{% url 'conciliacion_pdf' proceso.id %}" class="btn btn-outline-danger btn-sm"><i class="bi bi-file-earmark-pdf me-1"></i>{% trans "Exportar PDF" %}</a>
 </div>
 
 <div class="card">
@@ -55,7 +57,7 @@
         <div class="table-responsive">
             <table class="table table-hover mb-0">
                 <thead>
-                    <tr><th>Factura</th><th>Proveedor</th><th>Monto</th><th>Tipo</th><th>Confianza</th><th>Pago Ref.</th><th>Observación</th></tr>
+                    <tr><th>{% trans "Factura" %}</th><th>{% trans "Proveedor" %}</th><th>{% trans "Monto" %}</th><th>{% trans "Tipo" %}</th><th>{% trans "Confianza" %}</th><th>{% trans "Pago Ref." %}</th><th>{% trans "Observación" %}</th></tr>
                 </thead>
                 <tbody>
                     {% for c in coincidencias %}
@@ -76,7 +78,7 @@
                         <td class="small">{{ c.observacion|default:"-"|truncatechars:40 }}</td>
                     </tr>
                     {% empty %}
-                    <tr><td colspan="7" class="text-center py-4 text-secondary">Sin coincidencias</td></tr>
+                    <tr><td colspan="7" class="text-center py-4 text-secondary">{% trans "Sin coincidencias" %}</td></tr>
                     {% endfor %}
                 </tbody>
             </table>

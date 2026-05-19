@@ -1,28 +1,32 @@
-<!-- Autor: Equipo VeriPay -->
 {% extends "base.html" %}
-{% block title %}OCR - Resultado{% endblock %}
-{% block content %}
+{% load i18n %}
+{% block title %}{% trans "OCR - Resultado" %}{% endblock %}
+{% block page_title %}{% trans "Resultado OCR" %}{% endblock %}
+{% block breadcrumbs %}
 <nav aria-label="breadcrumb" class="mb-3">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="{% url 'factura_ocr_upload' %}">OCR</a></li>
-        <li class="breadcrumb-item active">Resultado</li>
+        <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">{% trans "Dashboard" %}</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'factura_ocr_upload' %}">{% trans "OCR" %}</a></li>
+        <li class="breadcrumb-item active">{% trans "Resultado" %}</li>
     </ol>
 </nav>
+{% endblock %}
+{% block content %}
 <div class="row g-4">
     <div class="col-lg-5">
         <div class="card">
-            <div class="card-header"><i class="bi bi-cpu me-2"></i>Texto Extraído (OCR)</div>
+            <div class="card-header"><i class="bi bi-cpu me-2"></i>{% trans "Texto Extraído (OCR)" %}</div>
             <div class="card-body">
                 <pre class="bg-light p-3 rounded" style="max-height:400px;overflow-y:auto;font-size:0.8rem;">{{ raw_text }}</pre>
                 <div class="mt-2">
-                    <span class="badge bg-primary bg-opacity-10 text-primary">Confianza: {{ confidence }}%</span>
+                    <span class="badge bg-primary bg-opacity-10 text-primary">{% trans "Confianza" %}: {{ confidence }}%</span>
                 </div>
             </div>
         </div>
     </div>
     <div class="col-lg-7">
         <div class="card">
-            <div class="card-header"><i class="bi bi-pencil-square me-2"></i>Datos Extraídos — Verifique y Confirme</div>
+            <div class="card-header"><i class="bi bi-pencil-square me-2"></i>{% trans "Datos Extraídos — Verifique y Confirme" %}</div>
             <div class="card-body">
                 <form method="post" action="{% url 'factura_ocr_confirm' %}">
                     {% csrf_token %}
@@ -34,8 +38,8 @@
                     </div>
                     {% endfor %}
                     <div class="d-flex gap-2">
-                        <button type="submit" class="btn btn-primary"><i class="bi bi-check-lg me-1"></i>Crear Factura</button>
-                        <a href="{% url 'factura_ocr_upload' %}" class="btn btn-outline-secondary">Intentar de nuevo</a>
+                        <button type="submit" class="btn btn-primary"><i class="bi bi-check-lg me-1"></i>{% trans "Crear Factura" %}</button>
+                        <a href="{% url 'factura_ocr_upload' %}" class="btn btn-outline-secondary">{% trans "Intentar de nuevo" %}</a>
                     </div>
                 </form>
             </div>
